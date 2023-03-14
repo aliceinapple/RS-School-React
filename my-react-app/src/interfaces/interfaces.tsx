@@ -5,3 +5,7 @@ export interface CardProps {
   portion: string;
   price: number;
 }
+
+export interface SearchBarState {
+  searchValue: string;
+}

@@ -15,14 +15,17 @@ body {
   text-transform: uppercase;
 }
 
-a{
+a {
   text-decoration: none;
   color: #F5F5F5;
   font-size: 20px;
 }
 
-.main_page {
+.main-page {
   padding: 50px;
+}
+
+.main-page_cards {
   display: grid;
   align-items: center;
   justify-items: center;
