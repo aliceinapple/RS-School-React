@@ -1,15 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
-import About from './AboutPage';
-import Main from './MainPage';
-import NotFound from './NotFoundPage';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import AboutPage from './AboutPage';
+import MainPage from './MainPage';
+import NotFoundPage from './NotFoundPage';
 
 function Routing() {
   return (
     <Router>
       <div className="header">
         <p>
-          <Link to="/main">Home page</Link>
+          <Link to="/main">Main</Link>
         </p>
         <p>
           <Link to="/about">About</Link>
@@ -17,9 +17,9 @@ function Routing() {
       </div>
 
       <Routes>
-        <Route path="/main" element={<Main />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

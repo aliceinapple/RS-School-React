@@ -4,9 +4,9 @@ import Routing from './Routing';
 class Header extends React.Component {
   render() {
     return (
-      <nav>
+      <header>
         <Routing />
-      </nav>
+      </header>
     );
   }
 }
