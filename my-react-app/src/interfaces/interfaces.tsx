@@ -9,3 +9,7 @@ export interface CardProps {
 export interface SearchBarState {
   searchValue: string;
 }
+
+export interface SearchBarProps {
+  name: string;
+}

@@ -7,7 +7,7 @@ class MainPage extends React.Component {
     return (
       <div className="main-page">
         <div className="main-page_search">
-          <SearchBar />
+          <SearchBar name="searchValue" />
         </div>
 
         <div className="main-page_cards">

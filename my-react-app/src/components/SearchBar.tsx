@@ -1,38 +1,33 @@
-import { SearchBarState } from 'interfaces/interfaces';
-import React, { Component } from 'react';
+import { SearchBarProps, SearchBarState } from 'interfaces/interfaces';
+import React, { Fragment } from 'react';
 
-class SearchBar extends Component<{}, SearchBarState> {
-  constructor(props: {}) {
+class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
+  constructor(props: SearchBarProps) {
     super(props);
-
     this.state = {
-      searchValue: localStorage.getItem('searchTerm') || '',
+      searchValue: localStorage.getItem(props.name) || '',
     };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
-
-  componentDidMount() {
-    const searchValue = localStorage.getItem('searchValue');
-    if (searchValue !== null) {
-      this.setState({ searchValue: searchValue });
-    }
   }
 
   componentWillUnmount() {
-    localStorage.setItem('searchValue', this.state.searchValue);
+    localStorage.setItem(this.props.name, this.state.searchValue);
   }
 
-  handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ searchValue: event.target.value });
-  }
+  };
 
   render() {
     return (
-      <div>
-        <input type="text" value={this.state.searchValue} onChange={this.handleInputChange} />
-        <p>Search Value: {this.state.searchValue}</p>
-      </div>
+      <Fragment>
+        <input
+          type="text"
+          name={this.props.name}
+          value={this.state.searchValue}
+          onChange={this.handleChange}
+        />
+        <button></button>
+      </Fragment>
     );
   }
 }

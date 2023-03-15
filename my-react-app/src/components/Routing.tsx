@@ -1,20 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AboutPage from './AboutPage';
+import Header from './Header';
 import MainPage from './MainPage';
 import NotFoundPage from './NotFoundPage';
 
 function Routing() {
   return (
     <Router>
-      <div className="header">
-        <p>
-          <Link to="/main">Main</Link>
-        </p>
-        <p>
-          <Link to="/about">About</Link>
-        </p>
-      </div>
+      <Header />
 
       <Routes>
         <Route path="/main" element={<MainPage />} />
