@@ -1,6 +1,6 @@
+import Card from '../components/Card';
+import SearchBar from '../components/SearchBar';
 import React from 'react';
-import Card from './Card';
-import SearchBar from './SearchBar';
 
 class MainPage extends React.Component {
   render() {
