@@ -1,5 +1,5 @@
 import { SearchBarProps, SearchBarState } from 'interfaces/interfaces';
-import React, { Fragment } from 'react';
+import React from 'react';
 
 class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
   constructor(props: SearchBarProps) {
@@ -19,7 +19,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
 
   render() {
     return (
-      <Fragment>
+      <div className="main-page_search">
         <input
           type="text"
           name={this.props.name}
@@ -27,7 +27,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
           onChange={this.handleChange}
         />
         <button></button>
-      </Fragment>
+      </div>
     );
   }
 }
