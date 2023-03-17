@@ -2,17 +2,28 @@
 
 body {
   background: #F5F5F5;
-  font-family: 'Croissant One', cursive;
-  /* font-family: 'Lato', sans-serif; */
+  font-family: 'Lato', sans-serif;
 }
 
 .header {
-  font-family: 'Croissant One', cursive;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   padding: 20px 50px;
   gap: 20px;
   background: #8CB0C9;
   text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.header_title {
+  /* font-family: 'Croissant One', cursive; */
+  font-size: 20px;
+  justify-self: end;
+  font-weight: 900;
 }
 
 a {
@@ -77,9 +88,16 @@ a {
 
 .main-page_cards {
   display: grid;
+  gap: 20px;
   align-items: center;
   justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card {
+  border: 1px solid #8CB0C9;
+  padding: 20px;
+  border-radius: 5px;
 }
 
 .card_img {

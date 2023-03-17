@@ -14,3 +14,7 @@ export interface SearchBarState {
 export interface SearchBarProps {
   name: string;
 }
+
+export interface HeaderTitleState {
+  currentPageTitle: string;
+}
