@@ -16,20 +16,17 @@ class HeaderTitle extends React.Component<{}, HeaderTitleState> {
   getTitle() {
     const path = window.location.pathname;
 
-    switch (path) {
-      case '/main':
-        this.setState({ currentPageTitle: 'main' });
-        break;
-      case '/about':
-        this.setState({ currentPageTitle: 'about' });
-        break;
-      default:
-        this.setState({ currentPageTitle: '404' });
+    if (path === '/main' || path === '/') {
+      this.setState({ currentPageTitle: 'main' });
+    } else if (path === '/about') {
+      this.setState({ currentPageTitle: 'about' });
+    } else {
+      this.setState({ currentPageTitle: '404' });
     }
   }
 
   render() {
-    return <div className='header_title'>{this.state.currentPageTitle} page</div>;
+    return <div className="header_title">{this.state.currentPageTitle} page</div>;
   }
 }
 

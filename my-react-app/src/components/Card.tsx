@@ -1,5 +1,6 @@
 import { CardProps } from 'interfaces/interfaces';
 import React from 'react';
+import AddToCartBtn from './AddToCartBtn';
 
 class Card extends React.Component<CardProps> {
   render() {
@@ -12,6 +13,7 @@ class Card extends React.Component<CardProps> {
         <p>{weight} grams</p>
         <p>{portion}</p>
         <p>{price} $</p>
+        <AddToCartBtn />
       </div>
     );
   }
