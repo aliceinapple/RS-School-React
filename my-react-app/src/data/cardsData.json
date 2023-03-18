@@ -46,5 +46,21 @@
     "weight": 250,
     "portion": "10 portions",
     "price": 60
+  },
+  {
+    "id": 7,
+    "image": "https://embassy.by/assets/images/products/65/medium/angela.jpg",
+    "name": "Cherry Angel Cake",
+    "weight": 1900,
+    "portion": "10-12 portions",
+    "price": 85
+  },
+  {
+    "id": 8,
+    "image": "https://embassy.by/assets/images/products/42/medium/kukis.jpg",
+    "name": "Cookies with chocolate",
+    "weight": 58,
+    "portion": "1 portion",
+    "price": 3
   }
 ]

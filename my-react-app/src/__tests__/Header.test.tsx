@@ -15,10 +15,4 @@ describe('Header component', () => {
     expect(links[0]).toHaveTextContent('Main');
     expect(links[1]).toHaveTextContent('About');
   });
-
-  // test('renders HeaderTitle component', () => {
-  //   render(<Header />);
-  //   const headerTitle = screen.getByRole('heading', { name: 'Header Title' });
-  //   expect(headerTitle).toBeInTheDocument();
-  // });
 });

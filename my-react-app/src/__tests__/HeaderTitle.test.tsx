@@ -12,7 +12,7 @@ describe('Header title component', () => {
     });
 
     const { getByText } = render(<HeaderTitle />);
-    expect(getByText('main page')).toBeInTheDocument();
+    expect(getByText('Main page')).toBeInTheDocument();
   });
 
   test('should render "about" as the page title when on the about page', () => {
@@ -24,7 +24,7 @@ describe('Header title component', () => {
     });
 
     const { getByText } = render(<HeaderTitle />);
-    expect(getByText('about page')).toBeInTheDocument();
+    expect(getByText('About page')).toBeInTheDocument();
   });
 
   test('should render "404" as the page title when on an unknown page', () => {

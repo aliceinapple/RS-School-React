@@ -6,7 +6,7 @@ class NotFoundPage extends React.Component {
     return (
       <Fragment>
         <Header />
-        <div>
+        <div className="not-found-page">
           <h1>404 Not Found</h1>
         </div>
       </Fragment>
