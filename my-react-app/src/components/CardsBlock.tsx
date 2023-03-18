@@ -7,6 +7,7 @@ class CardsBlock extends React.Component {
     const cardsBlock = cardsData.map((card) => (
       <Card
         key={card.id}
+        id={card.id}
         image={card.image}
         name={card.name}
         weight={card.weight}

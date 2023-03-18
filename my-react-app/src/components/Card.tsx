@@ -4,10 +4,10 @@ import AddToCartBtn from './AddToCartBtn';
 
 class Card extends React.Component<CardProps> {
   render() {
-    const { image, name, weight, portion, price } = this.props;
+    const { id, image, name, weight, portion, price } = this.props;
 
     return (
-      <div className="card">
+      <div className="card" id={`${id}`} role={'card'}>
         <div className="card_img" style={{ backgroundImage: `url(${image})` }}></div>
         <h2>{name}</h2>
         <p>{weight} grams</p>

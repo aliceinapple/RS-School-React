@@ -1,5 +1,5 @@
 export interface CardProps {
-  key: number;
+  id: number;
   image: string;
   name: string;
   weight: number;
