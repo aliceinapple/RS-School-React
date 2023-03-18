@@ -1,8 +1,8 @@
 import { HeaderTitleState } from 'interfaces/interfaces';
 import React from 'react';
 
-class HeaderTitle extends React.Component<{}, HeaderTitleState> {
-  constructor(props: {}) {
+class HeaderTitle extends React.Component<object, HeaderTitleState> {
+  constructor(props: object) {
     super(props);
     this.state = {
       currentPageTitle: '',

@@ -7,7 +7,7 @@ class Header extends React.Component {
     return (
       <header>
         <div className="header">
-          <div className='nav'>
+          <div className="nav">
             <Link to="/main">Main</Link>
             <Link to="/about">About</Link>
           </div>
