@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Jost&display=swap');
 
-element {
+:root {
   --blue-color: #8CB0C9;
-  --white-color: #F5F5F5;
+  --white-color: white;
+  --almost-white-color: #F5F5F5;
+  --light-black: #2C2D32;
 }
 
 body {
-  background: #F5F5F5;
+  background: var(--almost-white-color);
   font-family: 'Jost', sans-serif;
   color: #2C2D32;
 }
@@ -39,17 +41,17 @@ h2 {
   font-family: 'Dancing Script', cursive;
   font-size: 40px;
   justify-self: end;
-  text-shadow: 1px 1px 5px #ffffffe1;
+  text-shadow: 1px 1px 5px var(--almost-white-color);
 }
 
 a {
-  color: #2C2D32;
+  color: var(--light-black);
   font-size: 25px;
   text-decoration: none;
 }
 
 a:hover {
-  text-shadow: 1px 1px 5px #ffffffe1;
+  text-shadow: 1px 1px 5px var(--almost-white-color);
 }
 
 .main-page {
@@ -64,9 +66,9 @@ a:hover {
 
 .main-page_search input,
 .main-page_search button {
-  background: #F5F5F5;
+  background: var(--almost-white-color);
   border-radius: 5px;
-  border: 1px solid #8CB0C9;
+  border: 1px solid var(--blue-color);
   padding: 10px;
 }
 
@@ -79,11 +81,11 @@ a:hover {
 
 .main-page_search input:focus {
   outline: none;
-  background: white;
+  background: var(--white-color);
 }
 
 .main-page_search input:focus+button {
-  background-color: white;
+  background-color: var(--white-color);
 }
 
 .main-page_search button {
@@ -115,7 +117,7 @@ a:hover {
 }
 
 .card {
-  border: 1px solid #8CB0C9;
+  border: 1px solid var(--blue-color);
   padding: 20px;
   border-radius: 5px;
 }
@@ -129,8 +131,8 @@ a:hover {
 }
 
 .add-to-cart_btn {
-  background: #8CB0C9;
-  color: #F5F5F5;
+  background: var(--blue-color);
+  color: var(--almost-white-color);
   border-radius: 5px;
   width: 100%;
   margin-top: 5px;
