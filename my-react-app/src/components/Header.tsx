@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import HeaderTitle from './HeaderTitle';
 
 class Header extends React.Component {
@@ -8,8 +8,8 @@ class Header extends React.Component {
       <header>
         <div className="header">
           <div className='nav'>
-            <NavLink to="/main">Main</NavLink>
-            <NavLink to="/about">About</NavLink>
+            <Link to="/main">Main</Link>
+            <Link to="/about">About</Link>
           </div>
           <HeaderTitle />
         </div>

@@ -2,8 +2,7 @@ import AboutPage from '../pages/AboutPage';
 import MainPage from '../pages/MainPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Header from './Header';
+import { Routes, Route } from 'react-router-dom';
 
 function Routing() {
   return (
