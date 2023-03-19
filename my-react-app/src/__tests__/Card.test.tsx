@@ -12,7 +12,7 @@ describe('Card component', () => {
     price: 10,
   };
 
-  it('renders card with correct props', () => {
+  test('renders card with correct props', () => {
     render(<Card {...mockProps} />);
     expect(screen.getByText(mockProps.name)).toBeInTheDocument();
     expect(screen.getByText(`${mockProps.weight} grams`)).toBeInTheDocument();

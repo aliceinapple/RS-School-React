@@ -8,7 +8,7 @@ class MainPage extends React.Component {
     return (
       <Fragment>
         <Header />
-        <div className="main-page" role={'main'}>
+        <div className="main-page">
           <SearchBar name="searchValue" />
           <CardsBlock />
         </div>

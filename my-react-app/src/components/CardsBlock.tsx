@@ -16,7 +16,11 @@ class CardsBlock extends React.Component {
       />
     ));
 
-    return <div className="main-page_cards">{cardsBlock}</div>;
+    return (
+      <div className="main-page_cards" role={'cards'}>
+        {cardsBlock}
+      </div>
+    );
   }
 }
 

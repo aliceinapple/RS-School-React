@@ -12,7 +12,7 @@ describe('MainPage', () => {
     );
     const header = screen.getByRole('banner');
     const searchBar = screen.getByRole('textbox');
-    const cardsBlock = screen.getByRole('main');
+    const cardsBlock = screen.getByRole('cards');
 
     expect(header).toBeInTheDocument();
     expect(searchBar).toBeInTheDocument();
