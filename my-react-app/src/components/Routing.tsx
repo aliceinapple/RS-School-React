@@ -3,17 +3,21 @@ import MainPage from '../pages/MainPage';
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import NotFoundPage from '../pages/NotFoundPage';
+import { RoutingProps } from 'interfaces/interfaces';
 
-function Routing() {
-  return (
-    <Routes>
-      <Route path="/main" element={<MainPage />} />
-      <Route path="" element={<MainPage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="*" element={<Navigate to="/not-found" replace={true} />} />
-      <Route path="/not-found" element={<NotFoundPage />} />
-    </Routes>
-  );
+class Routing extends React.Component<RoutingProps> {
+  render(): React.ReactNode {
+    this.props.setCurrentPageTitle(window.location.pathname.slice(1));
+    return (
+      <Routes>
+        <Route path="/main" element={<MainPage />} />
+        <Route path="" element={<MainPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="*" element={<Navigate to="/not-found" />} />
+        <Route path="/not-found" element={<NotFoundPage />} />
+      </Routes>
+    );
+  }
 }
 
 export default Routing;

@@ -1,32 +1,9 @@
-import { HeaderTitleState } from 'interfaces/interfaces';
+import { HeaderTitleProps, HeaderTitleState } from 'interfaces/interfaces';
 import React from 'react';
 
-class HeaderTitle extends React.Component<object, HeaderTitleState> {
-  constructor(props: object) {
-    super(props);
-    this.state = {
-      currentPageTitle: '',
-    };
-  }
-
-  componentDidMount() {
-    this.getTitle();
-  }
-
-  getTitle() {
-    const path = window.location.pathname;
-
-    if (path === '/main' || path === '/') {
-      this.setState({ currentPageTitle: 'Main' });
-    } else if (path === '/about') {
-      this.setState({ currentPageTitle: 'About' });
-    } else {
-      this.setState({ currentPageTitle: '404' });
-    }
-  }
-
+class HeaderTitle extends React.Component<HeaderTitleProps, HeaderTitleState> {
   render() {
-    return <div className="header_title">{this.state.currentPageTitle} page</div>;
+    return <div className="header_title">{this.props.pageTitle} page</div>;
   }
 }
 

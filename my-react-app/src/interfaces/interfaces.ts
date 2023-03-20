@@ -18,3 +18,11 @@ export interface SearchBarProps {
 export interface HeaderTitleState {
   currentPageTitle: string;
 }
+
+export interface HeaderTitleProps {
+  pageTitle: string;
+}
+
+export interface RoutingProps {
+  setCurrentPageTitle: (title: string) => void;
+}

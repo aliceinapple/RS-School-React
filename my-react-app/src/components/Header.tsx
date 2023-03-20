@@ -1,8 +1,9 @@
+import { HeaderTitleProps } from 'interfaces/interfaces';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HeaderTitle from './HeaderTitle';
 
-class Header extends React.Component {
+class Header extends React.Component<HeaderTitleProps> {
   render() {
     return (
       <header>
@@ -11,7 +12,7 @@ class Header extends React.Component {
             <Link to="/main">Main</Link>
             <Link to="/about">About</Link>
           </div>
-          <HeaderTitle />
+          <HeaderTitle pageTitle={this.props.pageTitle} />
         </div>
       </header>
     );
