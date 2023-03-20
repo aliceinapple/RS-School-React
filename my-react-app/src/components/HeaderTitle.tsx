@@ -1,7 +1,7 @@
-import { HeaderTitleProps, HeaderTitleState } from 'interfaces/interfaces';
+import { TitleProps, TitleState } from 'interfaces/interfaces';
 import React from 'react';
 
-class HeaderTitle extends React.Component<HeaderTitleProps, HeaderTitleState> {
+class HeaderTitle extends React.Component<TitleProps, TitleState> {
   render() {
     return <div className="header_title">{this.props.pageTitle} page</div>;
   }

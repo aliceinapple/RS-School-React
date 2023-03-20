@@ -15,14 +15,14 @@ export interface SearchBarProps {
   name: string;
 }
 
-export interface HeaderTitleState {
+export interface TitleState {
   currentPageTitle: string;
 }
 
-export interface HeaderTitleProps {
-  pageTitle: string;
+export interface TitleProps {
+  pageTitle?: string;
 }
 
-export interface RoutingProps {
+export interface SetPageTitle {
   setCurrentPageTitle: (title: string) => void;
 }

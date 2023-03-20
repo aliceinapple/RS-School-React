@@ -1,9 +1,9 @@
-import { HeaderTitleProps } from 'interfaces/interfaces';
+import { TitleProps } from 'interfaces/interfaces';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HeaderTitle from './HeaderTitle';
 
-class Header extends React.Component<HeaderTitleProps> {
+class Header extends React.Component<TitleProps> {
   render() {
     return (
       <header>
