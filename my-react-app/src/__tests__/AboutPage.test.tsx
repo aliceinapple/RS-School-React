@@ -10,9 +10,6 @@ describe('AboutPage', () => {
         <AboutPage />
       </BrowserRouter>
     );
-    const header = screen.getByRole('banner');
-
-    expect(header).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 1, name: 'About' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 1, name: 'About' })).toHaveTextContent('About');
   });

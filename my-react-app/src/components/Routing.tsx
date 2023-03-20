@@ -1,8 +1,8 @@
 import AboutPage from '../pages/AboutPage';
 import MainPage from '../pages/MainPage';
-import NotFoundPage from '../pages/NotFoundPage';
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import NotFoundPage from '../pages/NotFoundPage';
 
 function Routing() {
   return (
@@ -10,7 +10,8 @@ function Routing() {
       <Route path="/main" element={<MainPage />} />
       <Route path="" element={<MainPage />} />
       <Route path="/about" element={<AboutPage />} />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<Navigate to="/not-found" replace={true} />} />
+      <Route path="/not-found" element={<NotFoundPage />} />
     </Routes>
   );
 }

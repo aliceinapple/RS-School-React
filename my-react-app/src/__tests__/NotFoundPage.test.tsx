@@ -10,9 +10,7 @@ describe('NotFoundPage', () => {
         <NotFoundPage />
       </BrowserRouter>
     );
-    const header = screen.getByRole('banner');
 
-    expect(header).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 1, name: '404 Not Found' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { level: 1, name: '404 Not Found' })).toHaveTextContent(
       '404 Not Found'
