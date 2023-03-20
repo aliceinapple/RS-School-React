@@ -7,7 +7,7 @@ describe('Header component', () => {
   test('renders two links with correct text', () => {
     render(
       <BrowserRouter>
-        <Header />
+        <Header pageTitle="Test Page Title" />
       </BrowserRouter>
     );
     const links = screen.getAllByRole('link');
