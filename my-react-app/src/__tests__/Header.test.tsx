@@ -11,8 +11,9 @@ describe('Header component', () => {
       </BrowserRouter>
     );
     const links = screen.getAllByRole('link');
-    expect(links).toHaveLength(2);
+    expect(links).toHaveLength(3);
     expect(links[0]).toHaveTextContent('Main');
     expect(links[1]).toHaveTextContent('About');
+    expect(links[2]).toHaveTextContent('Form');
   });
 });
