@@ -7,7 +7,7 @@ import { SetPageTitle } from 'interfaces/interfaces';
 
 class Routing extends React.Component<SetPageTitle> {
   render() {
-    this.props.setCurrentPageTitle(location.pathname.slice(1));
+    this.props.setCurrentPageTitle(location.pathname.slice(1) || 'main');
     return (
       <Routes>
         <Route path="/main" element={<MainPage />} />
