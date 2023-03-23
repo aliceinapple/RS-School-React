@@ -8,7 +8,7 @@ import FormPage from '../pages/FormPage';
 
 class Routing extends React.Component<SetPageTitle> {
   render() {
-    this.props.setCurrentPageTitle(location.pathname.slice(1) || 'main');
+    // this.props.setCurrentPageTitle(location.pathname.slice(1) || 'main');
     return (
       <Routes>
         <Route path="/main" element={<MainPage />} />

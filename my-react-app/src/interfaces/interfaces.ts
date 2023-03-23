@@ -1,3 +1,5 @@
+import { RefObject } from 'react';
+
 export interface CardProps {
   id: number;
   image: string;
@@ -25,4 +27,26 @@ export interface TitleProps {
 
 export interface SetPageTitle {
   setCurrentPageTitle: (title: string) => void;
+}
+
+export interface FormState {
+  username: string;
+  birthdayInput: string;
+  citySelect: string;
+  consentCheckbox: boolean;
+  genderSwitch: string;
+  profilePictureInput: string;
+}
+
+export interface FormProps {
+  nameInput: RefObject<HTMLInputElement>;
+  birthdayInput: RefObject<HTMLInputElement>;
+  citySelect: RefObject<HTMLSelectElement>;
+  consentCheckbox: RefObject<HTMLInputElement>;
+  genderSwitch: RefObject<HTMLInputElement>;
+  profilePictureInput: RefObject<HTMLInputElement>;
+}
+
+export interface FormPageState {
+  formStateArray: FormState[];
 }
