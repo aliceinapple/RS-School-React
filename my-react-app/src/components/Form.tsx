@@ -10,11 +10,12 @@ class Form extends React.Component<FormProps> {
       consentCheckbox,
       genderSwitch,
       profilePictureInput,
+      onFormSubmit,
     } = this.props;
     return (
       <div className="form-page">
         <h2>Form Page</h2>
-        <form className="form">
+        <form className="form" onSubmit={onFormSubmit}>
           <label>
             Name:
             <input type="text" ref={nameInput} required />
@@ -31,12 +32,12 @@ class Form extends React.Component<FormProps> {
           <label>
             City:
             <select ref={citySelect}>
-              <option value="usa">USA</option>
-              <option value="canada">Canada</option>
-              <option value="mexico">Mexico</option>
-              <option value="mexico">Mexico</option>
-              <option value="mexico">Mexico</option>
-              <option value="mexico">Mexico</option>
+              <option value="Minsk">Minsk</option>
+              <option value="Brest">Brest</option>
+              <option value="Gomel">Gomel</option>
+              <option value="Grodno">Grodno</option>
+              <option value="Vitebsk">Vitebsk</option>
+              <option value="Mogilev">Mogilev</option>
             </select>
           </label>
           <label>

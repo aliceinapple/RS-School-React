@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import { FormEvent, RefObject } from 'react';
 
 export interface CardProps {
   id: number;
@@ -39,14 +39,19 @@ export interface FormState {
 }
 
 export interface FormProps {
-  nameInput: RefObject<HTMLInputElement>;
-  birthdayInput: RefObject<HTMLInputElement>;
-  citySelect: RefObject<HTMLSelectElement>;
-  consentCheckbox: RefObject<HTMLInputElement>;
-  genderSwitch: RefObject<HTMLInputElement>;
-  profilePictureInput: RefObject<HTMLInputElement>;
+  nameInput?: RefObject<HTMLInputElement>;
+  birthdayInput?: RefObject<HTMLInputElement>;
+  citySelect?: RefObject<HTMLSelectElement>;
+  consentCheckbox?: RefObject<HTMLInputElement>;
+  genderSwitch?: RefObject<HTMLInputElement>;
+  profilePictureInput?: RefObject<HTMLInputElement>;
+  onFormSubmit?: (event: FormEvent<HTMLFormElement>) => void;
 }
 
 export interface FormPageState {
   formStateArray: FormState[];
+}
+
+export interface FormCardData {
+  data: FormState;
 }

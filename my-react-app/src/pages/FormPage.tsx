@@ -1,6 +1,8 @@
 import Form from '../components/Form';
-import React, { RefObject } from 'react';
+import React, { Fragment, RefObject } from 'react';
 import { FormPageState, FormProps, FormState } from 'interfaces/interfaces';
+import FormCards from '../components/FormCards';
+import SuccessMesage from '../components/SuccessMessage';
 
 class FormPage extends React.Component<FormProps, FormPageState> {
   nameInput: RefObject<HTMLInputElement>;
@@ -62,17 +64,35 @@ class FormPage extends React.Component<FormProps, FormPageState> {
     this.setState((prevState) => ({
       formStateArray: [...prevState.formStateArray, formData],
     }));
+
+    nameInput.value = '';
+    birthdayInput.value = '';
+    citySelect.value = 'Minsk';
+    consentCheckbox.checked = false;
+    genderSwitch.value = 'female';
+    if (profilePictureInput) profilePictureInput.value = '';
   }
+
   render() {
+    const { formStateArray } = this.state;
+    console.log(formStateArray);
+
     return (
-      <Form
-        nameInput={this.props.nameInput}
-        birthdayInput={this.props.birthdayInput}
-        citySelect={this.props.citySelect}
-        consentCheckbox={this.props.consentCheckbox}
-        genderSwitch={this.props.genderSwitch}
-        profilePictureInput={this.props.profilePictureInput}
-      />
+      <Fragment>
+        <Form
+          nameInput={this.nameInput}
+          birthdayInput={this.birthdayInput}
+          citySelect={this.citySelect}
+          consentCheckbox={this.consentCheckbox}
+          genderSwitch={this.genderSwitch}
+          profilePictureInput={this.profilePictureInput}
+          onFormSubmit={this.handleSubmit}
+        />
+        {formStateArray.map((formState, index) => (
+          <FormCards key={index} data={formState} />
+        ))}
+        <SuccessMesage />
+      </Fragment>
     );
   }
 }
