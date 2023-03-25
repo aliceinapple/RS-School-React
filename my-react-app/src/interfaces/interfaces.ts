@@ -37,6 +37,8 @@ export interface FormState {
   genderSwitch?: string;
   profilePictureInput?: string;
   selectedOption?: string;
+  fileSelected?: boolean;
+  selectedFileName?: string;
 }
 
 export interface FormProps {

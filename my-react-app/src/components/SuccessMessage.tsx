@@ -2,7 +2,7 @@ import React from 'react';
 
 class SuccessMesage extends React.Component {
   render() {
-    return <div>Success</div>;
+    return <div className="success-message">Validation was successful</div>;
   }
 }
 

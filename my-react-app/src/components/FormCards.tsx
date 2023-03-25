@@ -6,11 +6,11 @@ class FormCards extends React.Component<FormCardData> {
     const { username, birthdayInput, citySelect, genderSwitch, profilePictureInput } =
       this.props.data;
     return (
-      <div>
-        <div>{username}</div>
-        <div>{birthdayInput}</div>
-        <div>{citySelect}</div>
-        <div>{genderSwitch}</div>
+      <div className="form-cards">
+        <div>Name: {username}</div>
+        <div>Birthday: {birthdayInput}</div>
+        <div>City: {citySelect}</div>
+        <div>Gender: {genderSwitch}</div>
         <div>{profilePictureInput}</div>
       </div>
     );

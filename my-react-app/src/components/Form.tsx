@@ -7,7 +7,24 @@ class Form extends React.Component<FormProps, FormState> {
 
     this.state = {
       selectedOption: 'male',
+      fileSelected: false,
+      selectedFileName: '',
     };
+    this.handleFileChange = this.handleFileChange.bind(this);
+  }
+
+  handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    if (event.target.files && event.target.files.length) {
+      this.setState({
+        fileSelected: true,
+        selectedFileName: event.target.files[0].name,
+      });
+    } else {
+      this.setState({
+        fileSelected: false,
+        selectedFileName: '',
+      });
+    }
   }
 
   handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,29 +46,28 @@ class Form extends React.Component<FormProps, FormState> {
       showErrorMessages,
     } = this.props;
 
-    const { selectedOption } = this.state;
+    const { selectedOption, fileSelected, selectedFileName } = this.state;
 
     return (
       <div className="form-page">
-        <h2>Form Page</h2>
         <form className="form" onSubmit={onFormSubmit}>
-          <label>
-            Name:
+          <label className="name-input">
+            Name*:
             <input type="text" ref={nameInput} />
-            {showErrorMessages.username && (
-              <span style={{ color: 'red' }}>
-                Please enter a valid name (first letter capitalized, only letters)
-              </span>
-            )}
           </label>
-          <label>
-            Birthday:
+          {showErrorMessages.username && (
+            <span style={{ color: 'red' }}>
+              Please enter a valid name (first letter capitalized, only letters)
+            </span>
+          )}
+          <label className="birthday-input">
+            Birthday*:
             <input type="date" ref={birthdayInput} />
-            {showErrorMessages.birthdayInput && (
-              <span style={{ color: 'red' }}>Please enter a valid date</span>
-            )}
           </label>
-          <label>
+          {showErrorMessages.birthdayInput && (
+            <span style={{ color: 'red' }}>Please enter a valid date</span>
+          )}
+          <label className="city-select">
             City:
             <select ref={citySelect}>
               <option value="Minsk">Minsk</option>
@@ -62,13 +78,7 @@ class Form extends React.Component<FormProps, FormState> {
               <option value="Mogilev">Mogilev</option>
             </select>
           </label>
-          <label>
-            <input type="checkbox" ref={consentCheckbox} />I consent to my personal data
-            {showErrorMessages.consentCheckbox && (
-              <span style={{ color: 'red' }}>You must agree to continue</span>
-            )}
-          </label>
-          <div>
+          <div className="gender-input">
             <label>
               Male
               <input
@@ -92,10 +102,25 @@ class Form extends React.Component<FormProps, FormState> {
               />
             </label>
           </div>
-          <label>
+          <label htmlFor="profile-picture-input" className="profile-input">
             Profile picture:
-            <input type="file" ref={profilePictureInput} />
+            <input
+              id="profile-picture-input"
+              type="file"
+              ref={profilePictureInput}
+              onChange={this.handleFileChange}
+            />
+            <span className="file-label">
+              {fileSelected ? selectedFileName : 'File not selected'}
+            </span>
           </label>
+          <label className="consent-input">
+            I consent to my personal data*
+            <input type="checkbox" ref={consentCheckbox} />
+          </label>
+          {showErrorMessages.consentCheckbox && (
+            <span style={{ color: 'red' }}>You must agree to continue</span>
+          )}
           <button className="form-button" type="submit">
             Submit
           </button>

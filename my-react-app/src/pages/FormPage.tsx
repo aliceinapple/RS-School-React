@@ -153,7 +153,7 @@ class FormPage extends React.Component<FormProps, FormPageState> {
       consentCheckbox.checked = false;
 
       if (profilePictureInput) profilePictureInput.value = '';
-    }, 1000);
+    }, 2000);
   }
 
   render() {
@@ -172,9 +172,11 @@ class FormPage extends React.Component<FormProps, FormPageState> {
           onFormSubmit={this.handleSubmit}
           showErrorMessages={showErrorMessages}
         />
-        {formStateArray.map((formState, index) => (
-          <FormCards key={index} data={formState} />
-        ))}
+        <div className="form-cards-area">
+          {formStateArray.map((formState, index) => (
+            <FormCards key={index} data={formState} />
+          ))}
+        </div>
         {showSuccessMessage && <SuccessMesage />}
       </Fragment>
     );
