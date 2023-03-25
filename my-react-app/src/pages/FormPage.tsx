@@ -9,7 +9,8 @@ class FormPage extends React.Component<FormProps, FormPageState> {
   birthdayInput: RefObject<HTMLInputElement>;
   citySelect: RefObject<HTMLSelectElement>;
   consentCheckbox: RefObject<HTMLInputElement>;
-  genderSwitch: RefObject<HTMLInputElement>;
+  maleGenderSwitch: RefObject<HTMLInputElement>;
+  femaleGenderSwitch: RefObject<HTMLInputElement>;
   profilePictureInput: RefObject<HTMLInputElement>;
 
   constructor(props: FormProps) {
@@ -17,13 +18,20 @@ class FormPage extends React.Component<FormProps, FormPageState> {
 
     this.state = {
       formStateArray: [],
+      showErrorMessages: {
+        username: false,
+        birthdayInput: false,
+        consentCheckbox: false,
+      },
+      showSuccessMessage: false,
     };
 
     this.nameInput = React.createRef();
     this.birthdayInput = React.createRef();
     this.citySelect = React.createRef();
     this.consentCheckbox = React.createRef();
-    this.genderSwitch = React.createRef();
+    this.maleGenderSwitch = React.createRef();
+    this.femaleGenderSwitch = React.createRef();
     this.profilePictureInput = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,51 +39,125 @@ class FormPage extends React.Component<FormProps, FormPageState> {
 
   handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     const nameInput = this.nameInput.current;
     const birthdayInput = this.birthdayInput.current;
     const citySelect = this.citySelect.current;
     const consentCheckbox = this.consentCheckbox.current;
-    const genderSwitch = this.genderSwitch.current;
+    const maleGenderSwitch = this.maleGenderSwitch.current;
+    const femaleGenderSwitch = this.femaleGenderSwitch.current;
     const profilePictureInput = this.profilePictureInput.current;
+
     if (
       !nameInput ||
-      !nameInput.value ||
       !birthdayInput ||
-      !birthdayInput.value ||
       !citySelect ||
-      !citySelect.value ||
       !consentCheckbox ||
-      !consentCheckbox.checked ||
-      !genderSwitch ||
-      !genderSwitch.value
+      !maleGenderSwitch ||
+      !femaleGenderSwitch ||
+      !profilePictureInput
     ) {
       return;
     }
 
-    const formData: FormState = {
-      username: nameInput.value,
-      birthdayInput: birthdayInput.value,
-      citySelect: citySelect.value,
-      consentCheckbox: consentCheckbox.checked,
-      genderSwitch: genderSwitch.value,
-      profilePictureInput: profilePictureInput ? profilePictureInput.value : '',
+    let hasErrors = false;
+    const errors = {
+      username: false,
+      birthdayInput: false,
+      consentCheckbox: false,
     };
 
-    this.setState((prevState) => ({
-      formStateArray: [...prevState.formStateArray, formData],
-    }));
+    if (!nameInput || !nameInput.value) {
+      errors.username = true;
+      hasErrors = true;
+    } else {
+      const isNameValid = /^[A-Z][a-z]*$/.test(nameInput.value);
+      if (!isNameValid) {
+        errors.username = true;
+        hasErrors = true;
+      }
+    }
 
-    nameInput.value = '';
-    birthdayInput.value = '';
-    citySelect.value = 'Minsk';
-    consentCheckbox.checked = false;
-    genderSwitch.value = 'female';
-    if (profilePictureInput) profilePictureInput.value = '';
+    if (!birthdayInput || !birthdayInput.value) {
+      errors.birthdayInput = true;
+      hasErrors = true;
+    } else {
+      const selectedDate = new Date(birthdayInput.value);
+      const today = new Date();
+
+      if (selectedDate > today) {
+        errors.birthdayInput = true;
+        hasErrors = true;
+      }
+    }
+
+    if (!consentCheckbox || !consentCheckbox.checked) {
+      errors.consentCheckbox = true;
+      hasErrors = true;
+    }
+
+    if (hasErrors) {
+      this.setState({ showErrorMessages: errors });
+    } else {
+      this.setState({
+        showErrorMessages: { username: false, birthdayInput: false, consentCheckbox: false },
+      });
+      this.setFormState(
+        nameInput,
+        birthdayInput,
+        citySelect,
+        consentCheckbox,
+        maleGenderSwitch,
+        femaleGenderSwitch,
+        profilePictureInput
+      );
+    }
+  }
+
+  setFormState(
+    nameInput: HTMLInputElement,
+    birthdayInput: HTMLInputElement,
+    citySelect: HTMLSelectElement,
+    consentCheckbox: HTMLInputElement,
+    maleGenderSwitch: HTMLInputElement,
+    femaleGenderSwitch: HTMLInputElement,
+    profilePictureInput: HTMLInputElement
+  ) {
+    this.setState({ showSuccessMessage: true });
+
+    setTimeout(() => {
+      this.setState({
+        showSuccessMessage: false,
+        showErrorMessages: {
+          username: false,
+          birthdayInput: false,
+          consentCheckbox: false,
+        },
+      });
+      const formData: FormState = {
+        username: nameInput.value,
+        birthdayInput: birthdayInput.value,
+        citySelect: citySelect.value,
+        consentCheckbox: consentCheckbox.checked,
+        genderSwitch: maleGenderSwitch.checked ? maleGenderSwitch.value : femaleGenderSwitch.value,
+        profilePictureInput: profilePictureInput ? profilePictureInput.value : '',
+      };
+
+      this.setState((prevState) => ({
+        formStateArray: [...prevState.formStateArray, formData],
+      }));
+
+      nameInput.value = '';
+      birthdayInput.value = '';
+      citySelect.value = 'Minsk';
+      consentCheckbox.checked = false;
+
+      if (profilePictureInput) profilePictureInput.value = '';
+    }, 1000);
   }
 
   render() {
-    const { formStateArray } = this.state;
-    console.log(formStateArray);
+    const { formStateArray, showSuccessMessage, showErrorMessages } = this.state;
 
     return (
       <Fragment>
@@ -84,14 +166,16 @@ class FormPage extends React.Component<FormProps, FormPageState> {
           birthdayInput={this.birthdayInput}
           citySelect={this.citySelect}
           consentCheckbox={this.consentCheckbox}
-          genderSwitch={this.genderSwitch}
+          maleGenderSwitch={this.maleGenderSwitch}
+          femaleGenderSwitch={this.femaleGenderSwitch}
           profilePictureInput={this.profilePictureInput}
           onFormSubmit={this.handleSubmit}
+          showErrorMessages={showErrorMessages}
         />
         {formStateArray.map((formState, index) => (
           <FormCards key={index} data={formState} />
         ))}
-        <SuccessMesage />
+        {showSuccessMessage && <SuccessMesage />}
       </Fragment>
     );
   }

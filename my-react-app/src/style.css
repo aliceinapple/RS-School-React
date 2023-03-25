@@ -165,7 +165,7 @@ a:hover {
 }
 
 .form {
-  background: #8CB0C9;
+  background: var(--blue-color);
   padding: 40px 60px;
   display: flex;
   flex-direction: column;
