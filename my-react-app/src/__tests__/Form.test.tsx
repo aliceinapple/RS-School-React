@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/react';
 import Form from '../components/Form';
 
 describe('Form component', () => {
-  it('renders all form elements', () => {
+  test('renders all form elements', () => {
     const { getByLabelText, getByText } = render(<Form />);
     expect(getByLabelText('Name*:')).toBeInTheDocument();
     expect(getByLabelText('Birthday*:')).toBeInTheDocument();
@@ -14,14 +14,14 @@ describe('Form component', () => {
     expect(getByText('Submit')).toBeInTheDocument();
   });
 
-  it('updates state when name input changes', () => {
+  test('updates state when name input changes', () => {
     const { getByLabelText } = render(<Form />);
     const nameInput = getByLabelText('Name*:') as HTMLInputElement;
     fireEvent.change(nameInput, { target: { value: 'John Doe' } });
     expect(nameInput.value).toBe('John Doe');
   });
 
-  it('shows error message when invalid name is entered', () => {
+  test('shows error message when invalid name is entered', () => {
     const { getByLabelText, getByText } = render(<Form showErrorMessages={{ username: true }} />);
     const nameInput = getByLabelText('Name*:');
     fireEvent.change(nameInput, { target: { value: 'john doe' } });
@@ -30,14 +30,14 @@ describe('Form component', () => {
     ).toBeInTheDocument();
   });
 
-  it('updates state when birthday input changes', () => {
+  test('updates state when birthday input changes', () => {
     const { getByLabelText } = render(<Form />);
     const birthdayInput = getByLabelText('Birthday*:') as HTMLInputElement;
     fireEvent.change(birthdayInput, { target: { value: '1990-01-01' } });
     expect(birthdayInput.value).toBe('1990-01-01');
   });
 
-  it('shows error message when invalid date is entered', () => {
+  test('shows error message when invalid date is entered', () => {
     const { getByLabelText, getByText } = render(
       <Form showErrorMessages={{ birthdayInput: true }} />
     );
@@ -46,14 +46,14 @@ describe('Form component', () => {
     expect(getByText('Please enter a valid date')).toBeInTheDocument();
   });
 
-  it('updates state when city is selected', () => {
+  test('updates state when city is selected', () => {
     const { getByLabelText } = render(<Form />);
     const citySelect = getByLabelText('City:') as HTMLSelectElement;
     fireEvent.change(citySelect, { target: { value: 'Brest' } });
     expect(citySelect.value).toBe('Brest');
   });
 
-  it('updates state when male gender is selected', () => {
+  test('updates state when male gender is selected', () => {
     const { getByLabelText } = render(<Form />);
     const maleGenderSwitch = getByLabelText('Male') as HTMLInputElement;
     fireEvent.click(maleGenderSwitch);
