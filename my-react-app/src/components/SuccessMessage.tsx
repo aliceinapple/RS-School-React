@@ -1,9 +1,9 @@
 import React from 'react';
 
-class SuccessMesage extends React.Component {
+class SuccessMessage extends React.Component {
   render() {
     return <div className="success-message">Validation was successful</div>;
   }
 }
 
-export default SuccessMesage;
+export default SuccessMessage;

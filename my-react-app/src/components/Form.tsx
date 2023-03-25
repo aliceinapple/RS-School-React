@@ -55,7 +55,7 @@ class Form extends React.Component<FormProps, FormState> {
             Name*:
             <input type="text" ref={nameInput} />
           </label>
-          {showErrorMessages.username && (
+          {showErrorMessages?.username && (
             <span style={{ color: 'red' }}>
               Please enter a valid name (first letter capitalized, only letters)
             </span>
@@ -64,12 +64,12 @@ class Form extends React.Component<FormProps, FormState> {
             Birthday*:
             <input type="date" ref={birthdayInput} />
           </label>
-          {showErrorMessages.birthdayInput && (
+          {showErrorMessages?.birthdayInput && (
             <span style={{ color: 'red' }}>Please enter a valid date</span>
           )}
-          <label className="city-select">
+          <label className="city-select" htmlFor="city-dropdown">
             City:
-            <select ref={citySelect}>
+            <select id="city-dropdown" ref={citySelect}>
               <option value="Minsk">Minsk</option>
               <option value="Brest">Brest</option>
               <option value="Gomel">Gomel</option>
@@ -118,7 +118,7 @@ class Form extends React.Component<FormProps, FormState> {
             I consent to my personal data*
             <input type="checkbox" ref={consentCheckbox} />
           </label>
-          {showErrorMessages.consentCheckbox && (
+          {showErrorMessages?.consentCheckbox && (
             <span style={{ color: 'red' }}>You must agree to continue</span>
           )}
           <button className="form-button" type="submit">

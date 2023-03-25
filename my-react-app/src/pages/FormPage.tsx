@@ -2,7 +2,7 @@ import Form from '../components/Form';
 import React, { Fragment, RefObject } from 'react';
 import { FormPageState, FormProps, FormState } from 'interfaces/interfaces';
 import FormCards from '../components/FormCards';
-import SuccessMesage from '../components/SuccessMessage';
+import SuccessMessage from '../components/SuccessMessage';
 
 class FormPage extends React.Component<FormProps, FormPageState> {
   nameInput: RefObject<HTMLInputElement>;
@@ -177,7 +177,7 @@ class FormPage extends React.Component<FormProps, FormPageState> {
             <FormCards key={index} data={formState} />
           ))}
         </div>
-        {showSuccessMessage && <SuccessMesage />}
+        {showSuccessMessage && <SuccessMessage />}
       </Fragment>
     );
   }

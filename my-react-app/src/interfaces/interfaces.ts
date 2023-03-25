@@ -50,7 +50,7 @@ export interface FormProps {
   femaleGenderSwitch?: RefObject<HTMLInputElement>;
   profilePictureInput?: RefObject<HTMLInputElement>;
   onFormSubmit?: (event: FormEvent<HTMLFormElement>) => void;
-  showErrorMessages: {
+  showErrorMessages?: {
     username?: boolean;
     birthdayInput?: boolean;
     consentCheckbox?: boolean;
