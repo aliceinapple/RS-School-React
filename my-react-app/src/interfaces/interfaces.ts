@@ -49,14 +49,14 @@ export interface FormProps {
   maleGenderSwitch?: RefObject<HTMLInputElement>;
   femaleGenderSwitch?: RefObject<HTMLInputElement>;
   profilePictureInput?: RefObject<HTMLInputElement>;
-  onFormSubmit?: (event: FormEvent<HTMLFormElement>) => void;
+  fileSelected?: boolean;
+  selectedFileName?: string;
   showErrorMessages?: {
     username?: boolean;
     birthdayInput?: boolean;
     consentCheckbox?: boolean;
   };
-  fileSelected?: boolean;
-  selectedFileName?: string;
+  onFormSubmit?: (event: FormEvent<HTMLFormElement>) => void;
   handleFileChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

@@ -78,6 +78,10 @@ class FormPage extends React.Component<FormProps, FormPageState> {
       return;
     }
 
+    const isNameValid = /^[A-Z][a-z]*$/.test(nameInput.value);
+    const selectedDate = new Date(birthdayInput.value);
+    const today = new Date();
+
     let hasErrors = false;
     const errors = {
       username: false,
@@ -85,28 +89,14 @@ class FormPage extends React.Component<FormProps, FormPageState> {
       consentCheckbox: false,
     };
 
-    if (!nameInput || !nameInput.value) {
+    if (!isNameValid) {
       errors.username = true;
       hasErrors = true;
-    } else {
-      const isNameValid = /^[A-Z][a-z]*$/.test(nameInput.value);
-      if (!isNameValid) {
-        errors.username = true;
-        hasErrors = true;
-      }
     }
 
-    if (!birthdayInput || !birthdayInput.value) {
+    if (!birthdayInput.value || selectedDate > today) {
       errors.birthdayInput = true;
       hasErrors = true;
-    } else {
-      const selectedDate = new Date(birthdayInput.value);
-      const today = new Date();
-
-      if (selectedDate > today) {
-        errors.birthdayInput = true;
-        hasErrors = true;
-      }
     }
 
     if (profilePictureInput.files) {
@@ -119,7 +109,7 @@ class FormPage extends React.Component<FormProps, FormPageState> {
       if (file) reader.readAsDataURL(file);
     }
 
-    if (!consentCheckbox || !consentCheckbox.checked) {
+    if (!consentCheckbox.checked) {
       errors.consentCheckbox = true;
       hasErrors = true;
     }

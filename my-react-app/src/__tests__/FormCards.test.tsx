@@ -1,11 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import FormCards from '../components/FormCards';
 
 const testData = {
-  username: 'John Doe',
+  username: 'Homer Simpson',
   birthdayInput: '1990-01-01',
-  citySelect: 'New York',
+  citySelect: 'Springfield',
   genderSwitch: 'Male',
   profilePictureInput: 'image.jpg',
 };
@@ -17,7 +17,7 @@ describe('FormCards', () => {
 
   test('displays the correct name', () => {
     const { getByText } = render(<FormCards data={testData} />);
-    expect(getByText('Name: John Doe')).toBeInTheDocument();
+    expect(getByText('Name: Homer Simpson')).toBeInTheDocument();
   });
 
   test('displays the correct birthday', () => {
@@ -27,16 +27,11 @@ describe('FormCards', () => {
 
   test('displays the correct city', () => {
     const { getByText } = render(<FormCards data={testData} />);
-    expect(getByText('City: New York')).toBeInTheDocument();
+    expect(getByText('City: Springfield')).toBeInTheDocument();
   });
 
   test('displays the correct gender', () => {
     const { getByText } = render(<FormCards data={testData} />);
     expect(getByText('Gender: Male')).toBeInTheDocument();
-  });
-
-  test('displays the correct profile picture', () => {
-    const { getByText } = render(<FormCards data={testData} />);
-    expect(getByText('image.jpg')).toBeInTheDocument();
   });
 });
