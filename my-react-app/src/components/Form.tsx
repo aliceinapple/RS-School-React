@@ -7,24 +7,7 @@ class Form extends React.Component<FormProps, FormState> {
 
     this.state = {
       selectedOption: 'male',
-      fileSelected: false,
-      selectedFileName: '',
     };
-    this.handleFileChange = this.handleFileChange.bind(this);
-  }
-
-  handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
-    if (event.target.files && event.target.files.length) {
-      this.setState({
-        fileSelected: true,
-        selectedFileName: event.target.files[0].name,
-      });
-    } else {
-      this.setState({
-        fileSelected: false,
-        selectedFileName: '',
-      });
-    }
   }
 
   handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,9 +27,12 @@ class Form extends React.Component<FormProps, FormState> {
       profilePictureInput,
       onFormSubmit,
       showErrorMessages,
+      fileSelected,
+      selectedFileName,
+      handleFileChange,
     } = this.props;
 
-    const { selectedOption, fileSelected, selectedFileName } = this.state;
+    const { selectedOption } = this.state;
 
     return (
       <div className="form-page">
@@ -108,7 +94,7 @@ class Form extends React.Component<FormProps, FormState> {
               id="profile-picture-input"
               type="file"
               ref={profilePictureInput}
-              onChange={this.handleFileChange}
+              onChange={handleFileChange}
             />
             <span className="file-label">
               {fileSelected ? selectedFileName : 'File not selected'}

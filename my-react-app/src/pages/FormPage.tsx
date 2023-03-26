@@ -24,6 +24,9 @@ class FormPage extends React.Component<FormProps, FormPageState> {
         consentCheckbox: false,
       },
       showSuccessMessage: false,
+      profileImg: '',
+      fileSelected: false,
+      selectedFileName: '',
     };
 
     this.nameInput = React.createRef();
@@ -35,6 +38,21 @@ class FormPage extends React.Component<FormProps, FormPageState> {
     this.profilePictureInput = React.createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
+  }
+
+  handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    if (event.target.files && event.target.files.length) {
+      this.setState({
+        fileSelected: true,
+        selectedFileName: event.target.files[0].name,
+      });
+    } else {
+      this.setState({
+        fileSelected: false,
+        selectedFileName: '',
+      });
+    }
   }
 
   handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -91,6 +109,16 @@ class FormPage extends React.Component<FormProps, FormPageState> {
       }
     }
 
+    if (profilePictureInput.files) {
+      const file = profilePictureInput.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        const profileImg = reader.result;
+        this.setState({ profileImg });
+      };
+      if (file) reader.readAsDataURL(file);
+    }
+
     if (!consentCheckbox || !consentCheckbox.checked) {
       errors.consentCheckbox = true;
       hasErrors = true;
@@ -140,24 +168,35 @@ class FormPage extends React.Component<FormProps, FormPageState> {
         citySelect: citySelect.value,
         consentCheckbox: consentCheckbox.checked,
         genderSwitch: maleGenderSwitch.checked ? maleGenderSwitch.value : femaleGenderSwitch.value,
-        profilePictureInput: profilePictureInput ? profilePictureInput.value : '',
+        profilePictureInput: this.state.profileImg,
       };
 
       this.setState((prevState) => ({
         formStateArray: [...prevState.formStateArray, formData],
       }));
 
+      this.setState({
+        fileSelected: false,
+        selectedFileName: '',
+        profileImg: '',
+      });
+
       nameInput.value = '';
       birthdayInput.value = '';
       citySelect.value = 'Minsk';
       consentCheckbox.checked = false;
-
       if (profilePictureInput) profilePictureInput.value = '';
     }, 2000);
   }
 
   render() {
-    const { formStateArray, showSuccessMessage, showErrorMessages } = this.state;
+    const {
+      formStateArray,
+      showSuccessMessage,
+      showErrorMessages,
+      fileSelected,
+      selectedFileName,
+    } = this.state;
 
     return (
       <Fragment>
@@ -171,6 +210,9 @@ class FormPage extends React.Component<FormProps, FormPageState> {
           profilePictureInput={this.profilePictureInput}
           onFormSubmit={this.handleSubmit}
           showErrorMessages={showErrorMessages}
+          fileSelected={fileSelected}
+          selectedFileName={selectedFileName}
+          handleFileChange={this.handleFileChange}
         />
         <div className="form-cards-area">
           {formStateArray.map((formState, index) => (

@@ -11,7 +11,12 @@ class FormCards extends React.Component<FormCardData> {
         <div>Birthday: {birthdayInput}</div>
         <div>City: {citySelect}</div>
         <div>Gender: {genderSwitch}</div>
-        <div>{profilePictureInput}</div>
+        {profilePictureInput && (
+          <div
+            className="profile-picture"
+            style={{ backgroundImage: `url(${profilePictureInput as string})` }}
+          ></div>
+        )}
       </div>
     );
   }
