@@ -313,7 +313,7 @@ input[type="checkbox"]:checked::before {
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  margin: 0 30px 50px 30px; 
+  margin: 0 30px 50px 30px;
 }
 
 .form-cards {
@@ -329,7 +329,7 @@ input[type="checkbox"]:checked::before {
   color: var(--white-color);
 }
 
-.profile-picture{
+.profile-picture {
   background-size: cover;
   background-repeat: no-repeat;
   width: 170px;
