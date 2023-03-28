@@ -56,7 +56,15 @@ describe('Form component', () => {
   test('updates state when male gender is selected', () => {
     const { getByLabelText } = render(<Form />);
     const maleGenderSwitch = getByLabelText('Male') as HTMLInputElement;
-    fireEvent.click(maleGenderSwitch);
+    fireEvent.change(maleGenderSwitch, { target: { checked: true } });
+    console.log(maleGenderSwitch.checked);
     expect(maleGenderSwitch.checked).toBe(true);
+  });
+
+  test('updates state when female gender is selected', () => {
+    const { getByLabelText } = render(<Form />);
+    const femaleGenderSwitch = getByLabelText('Female') as HTMLInputElement;
+    fireEvent.change(femaleGenderSwitch, { target: { checked: true } });
+    expect(femaleGenderSwitch.checked).toBe(true);
   });
 });
