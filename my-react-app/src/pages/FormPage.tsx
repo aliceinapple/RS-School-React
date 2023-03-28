@@ -22,6 +22,9 @@ class FormPage extends React.Component<FormProps, FormPageState> {
         username: false,
         birthdayInput: false,
         consentCheckbox: false,
+        citySelect: false,
+        photoSelect: false,
+        genderSwitch: false,
       },
       showSuccessMessage: false,
       profileImg: '',
@@ -81,12 +84,16 @@ class FormPage extends React.Component<FormProps, FormPageState> {
     const isNameValid = /^[A-Z][a-z]*$/.test(nameInput.value);
     const selectedDate = new Date(birthdayInput.value);
     const today = new Date();
+    let genderSwitch = maleGenderSwitch.checked ? maleGenderSwitch.value : femaleGenderSwitch.value;
 
     let hasErrors = false;
     const errors = {
       username: false,
       birthdayInput: false,
       consentCheckbox: false,
+      citySelect: false,
+      photoSelect: false,
+      genderSwitch: false,
     };
 
     if (!isNameValid) {
@@ -114,17 +121,41 @@ class FormPage extends React.Component<FormProps, FormPageState> {
       hasErrors = true;
     }
 
+    if (citySelect.value === 'Select city') {
+      errors.citySelect = true;
+      hasErrors = true;
+    }
+
+    if (!profilePictureInput.value) {
+      errors.photoSelect = true;
+      hasErrors = true;
+    }
+
+    if (!maleGenderSwitch.checked && !femaleGenderSwitch.checked) {
+      errors.genderSwitch = true;
+      hasErrors = true;
+      genderSwitch = '';
+    }
+
     if (hasErrors) {
       this.setState({ showErrorMessages: errors });
     } else {
       this.setState({
-        showErrorMessages: { username: false, birthdayInput: false, consentCheckbox: false },
+        showErrorMessages: {
+          username: false,
+          birthdayInput: false,
+          consentCheckbox: false,
+          citySelect: false,
+          photoSelect: false,
+          genderSwitch: false,
+        },
       });
       this.setFormState(
         nameInput,
         birthdayInput,
         citySelect,
         consentCheckbox,
+        genderSwitch,
         maleGenderSwitch,
         femaleGenderSwitch,
         profilePictureInput
@@ -137,6 +168,7 @@ class FormPage extends React.Component<FormProps, FormPageState> {
     birthdayInput: HTMLInputElement,
     citySelect: HTMLSelectElement,
     consentCheckbox: HTMLInputElement,
+    genderSwitch: string,
     maleGenderSwitch: HTMLInputElement,
     femaleGenderSwitch: HTMLInputElement,
     profilePictureInput: HTMLInputElement
@@ -150,6 +182,9 @@ class FormPage extends React.Component<FormProps, FormPageState> {
           username: false,
           birthdayInput: false,
           consentCheckbox: false,
+          citySelect: false,
+          photoSelect: false,
+          genderSwitch: false,
         },
       });
       const formData: FormState = {
@@ -157,7 +192,7 @@ class FormPage extends React.Component<FormProps, FormPageState> {
         birthdayInput: birthdayInput.value,
         citySelect: citySelect.value,
         consentCheckbox: consentCheckbox.checked,
-        genderSwitch: maleGenderSwitch.checked ? maleGenderSwitch.value : femaleGenderSwitch.value,
+        genderSwitch: genderSwitch,
         profilePictureInput: this.state.profileImg,
       };
 
@@ -173,9 +208,12 @@ class FormPage extends React.Component<FormProps, FormPageState> {
 
       nameInput.value = '';
       birthdayInput.value = '';
-      citySelect.value = 'Minsk';
+      citySelect.value = 'Select city';
       consentCheckbox.checked = false;
       if (profilePictureInput) profilePictureInput.value = '';
+      genderSwitch = '';
+      maleGenderSwitch.checked = false;
+      femaleGenderSwitch.checked = false;
     }, 2000);
   }
 

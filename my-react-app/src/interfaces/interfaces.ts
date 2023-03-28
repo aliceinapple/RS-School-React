@@ -36,7 +36,6 @@ export interface FormState {
   consentCheckbox?: boolean;
   genderSwitch?: string;
   profilePictureInput?: string | ArrayBuffer | null;
-  selectedOption?: string;
   fileSelected?: boolean;
   selectedFileName?: string;
 }
@@ -55,6 +54,9 @@ export interface FormProps {
     username?: boolean;
     birthdayInput?: boolean;
     consentCheckbox?: boolean;
+    citySelect?: boolean;
+    photoSelect?: boolean;
+    genderSwitch?: boolean;
   };
   onFormSubmit?: (event: FormEvent<HTMLFormElement>) => void;
   handleFileChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -66,6 +68,9 @@ export interface FormPageState extends FormState {
     username?: boolean;
     birthdayInput?: boolean;
     consentCheckbox?: boolean;
+    citySelect?: boolean;
+    photoSelect?: boolean;
+    genderSwitch?: boolean;
   };
   showSuccessMessage: boolean;
   profileImg?: string | ArrayBuffer | null;

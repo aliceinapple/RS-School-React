@@ -4,17 +4,7 @@ import React from 'react';
 class Form extends React.Component<FormProps, FormState> {
   constructor(props: FormProps) {
     super(props);
-
-    this.state = {
-      selectedOption: 'male',
-    };
   }
-
-  handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      selectedOption: event.target.value,
-    });
-  };
 
   render() {
     const {
@@ -31,8 +21,6 @@ class Form extends React.Component<FormProps, FormState> {
       selectedFileName,
       handleFileChange,
     } = this.props;
-
-    const { selectedOption } = this.state;
 
     return (
       <div className="form-page">
@@ -56,6 +44,7 @@ class Form extends React.Component<FormProps, FormState> {
           <label className="city-select" htmlFor="city-dropdown">
             City:
             <select id="city-dropdown" ref={citySelect}>
+              <option value="Select city">Select city</option>
               <option value="Minsk">Minsk</option>
               <option value="Brest">Brest</option>
               <option value="Gomel">Gomel</option>
@@ -64,30 +53,22 @@ class Form extends React.Component<FormProps, FormState> {
               <option value="Mogilev">Mogilev</option>
             </select>
           </label>
+          {showErrorMessages?.citySelect && (
+            <span style={{ color: 'red' }}>Please select city</span>
+          )}
           <div className="gender-input">
             <label>
               Male
-              <input
-                type="radio"
-                name="gender"
-                value="male"
-                ref={maleGenderSwitch}
-                checked={selectedOption === 'male'}
-                onChange={this.handleRadioChange}
-              />
+              <input type="radio" name="gender" value="male" ref={maleGenderSwitch} />
             </label>
             <label>
               Female
-              <input
-                type="radio"
-                name="gender"
-                value="female"
-                ref={femaleGenderSwitch}
-                checked={selectedOption === 'female'}
-                onChange={this.handleRadioChange}
-              />
+              <input type="radio" name="gender" value="female" ref={femaleGenderSwitch} />
             </label>
           </div>
+          {showErrorMessages?.genderSwitch && (
+            <span style={{ color: 'red' }}>Please select gender</span>
+          )}
           <label htmlFor="profile-picture-input" className="profile-input">
             Profile picture:
             <input
@@ -100,6 +81,9 @@ class Form extends React.Component<FormProps, FormState> {
               {fileSelected ? selectedFileName : 'File not selected'}
             </span>
           </label>
+          {showErrorMessages?.photoSelect && (
+            <span style={{ color: 'red' }}>Please select photo</span>
+          )}
           <label className="consent-input">
             I consent to my personal data*
             <input type="checkbox" ref={consentCheckbox} />
