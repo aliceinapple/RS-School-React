@@ -224,27 +224,6 @@ a:hover {
   align-self: center;
 }
 
-input[type="file"] {
-  display: none;
-}
-
-label[for="profile-picture-input"] {
-  display: inline-block;
-  padding: 10px;
-  border: 1px solid var(--blue-color);
-  border-radius: 4px;
-  background-color: var(--white-color);
-  cursor: pointer;
-}
-
-label[for="profile-picture-input"]:hover {
-  background-color: var(--almost-white-color);
-}
-
-.file-label {
-  color: var(--blue-color);
-}
-
 input[type="radio"] {
   appearance: none;
   -webkit-appearance: none;

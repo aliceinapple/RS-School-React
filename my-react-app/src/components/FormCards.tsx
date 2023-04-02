@@ -1,28 +1,29 @@
-import { FormCardData } from 'interfaces/interfaces';
-import React from 'react';
-import profile from '../assets/icons/ico_profile_picture.png';
+import { FormCardsProps } from 'interfaces/interfaces';
+import React, { useEffect, useState } from 'react';
 
-class FormCards extends React.Component<FormCardData> {
-  render() {
-    const { username, birthdayInput, citySelect, genderSwitch, profilePictureInput } =
-      this.props.data;
-    return (
-      <div className="form-cards">
-        <div>Name: {username}</div>
-        <div>Birthday: {birthdayInput}</div>
-        <div>City: {citySelect}</div>
-        <div>Gender: {genderSwitch}</div>
-        {profilePictureInput ? (
-          <div
-            className="profile-picture"
-            style={{ backgroundImage: `url(${profilePictureInput as string})` }}
-          ></div>
-        ) : (
-          <div className="profile-picture" style={{ backgroundImage: `url(${profile})` }}></div>
-        )}
-      </div>
-    );
-  }
+function FormCards({ data }: FormCardsProps) {
+  const { name, birthday, city, gender, profilePicture } = data;
+  const [fileUrl, setFileUrl] = useState<string>(() => {
+    return profilePicture && profilePicture.length > 0
+      ? URL.createObjectURL(profilePicture[0])
+      : '';
+  });
+
+  useEffect(() => {
+    if (profilePicture.length > 0) {
+      setFileUrl(URL.createObjectURL(profilePicture[0]));
+    }
+  }, [profilePicture]);
+
+  return (
+    <div className="form-cards">
+      <div>Name: {name}</div>
+      <div>Birthday: {birthday}</div>
+      <div>City: {city}</div>
+      <div>Gender: {gender}</div>
+      <div className="profile-picture" style={{ backgroundImage: `url(${fileUrl})` }}></div>
+    </div>
+  );
 }
 
 export default FormCards;

@@ -2,36 +2,42 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import FormCards from '../components/FormCards';
 
-const testData = {
-  username: 'Homer Simpson',
-  birthdayInput: '1990-01-01',
-  citySelect: 'Springfield',
-  genderSwitch: 'Male',
-  profilePictureInput: 'image.jpg',
-};
+describe('FormCards component', () => {
+  interface FormInputs {
+    profilePicture: FileList;
+    name: string;
+    birthday: string;
+    city: string;
+    consent: boolean;
+    gender: 'male' | 'female';
+  }
 
-describe('FormCards', () => {
-  test('renders without crashing', () => {
-    render(<FormCards data={testData} />);
+  const data: FormInputs = {
+    profilePicture: new FileList(),
+    name: 'John Doe',
+    birthday: '01/01/2000',
+    city: 'New York',
+    consent: true,
+    gender: 'male',
+  };
+
+  test('renders correct name', () => {
+    const { getByText } = render(<FormCards data={data} />);
+    expect(getByText(`Name: ${data.name}`)).toBeInTheDocument();
   });
 
-  test('displays the correct name', () => {
-    const { getByText } = render(<FormCards data={testData} />);
-    expect(getByText('Name: Homer Simpson')).toBeInTheDocument();
+  test('renders correct birthday', () => {
+    const { getByText } = render(<FormCards data={data} />);
+    expect(getByText(`Birthday: ${data.birthday}`)).toBeInTheDocument();
   });
 
-  test('displays the correct birthday', () => {
-    const { getByText } = render(<FormCards data={testData} />);
-    expect(getByText('Birthday: 1990-01-01')).toBeInTheDocument();
+  test('renders correct city', () => {
+    const { getByText } = render(<FormCards data={data} />);
+    expect(getByText(`City: ${data.city}`)).toBeInTheDocument();
   });
 
-  test('displays the correct city', () => {
-    const { getByText } = render(<FormCards data={testData} />);
-    expect(getByText('City: Springfield')).toBeInTheDocument();
-  });
-
-  test('displays the correct gender', () => {
-    const { getByText } = render(<FormCards data={testData} />);
-    expect(getByText('Gender: Male')).toBeInTheDocument();
+  test('renders correct gender', () => {
+    const { getByText } = render(<FormCards data={data} />);
+    expect(getByText(`Gender: ${data.gender}`)).toBeInTheDocument();
   });
 });
