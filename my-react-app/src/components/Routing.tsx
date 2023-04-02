@@ -3,10 +3,9 @@ import MainPage from '../pages/MainPage';
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import NotFoundPage from '../pages/NotFoundPage';
-import { SetPageTitle } from 'interfaces/interfaces';
 import FormPage from '../pages/FormPage';
 
-class Routing extends React.Component<SetPageTitle> {
+class Routing extends React.Component {
   render() {
     return (
       <Routes>
