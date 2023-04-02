@@ -1,18 +1,14 @@
 import SearchBar from '../components/SearchBar';
-import React, { Fragment } from 'react';
+import React from 'react';
 import CardsBlock from '../components/CardsBlock';
 
-class MainPage extends React.Component {
-  render() {
-    return (
-      <Fragment>
-        <div className="main-page">
-          <SearchBar name="searchValue" />
-          <CardsBlock />
-        </div>
-      </Fragment>
-    );
-  }
+function MainPage() {
+  return (
+    <div className="main-page">
+      <SearchBar name="searchValue" />
+      <CardsBlock />
+    </div>
+  );
 }
 
 export default MainPage;
