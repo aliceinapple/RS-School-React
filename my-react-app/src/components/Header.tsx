@@ -11,6 +11,7 @@ class Header extends React.Component<TitleProps> {
           <div className="nav">
             <Link to="/main">Main</Link>
             <Link to="/about">About</Link>
+            <Link to="/form">Form</Link>
           </div>
           <HeaderTitle pageTitle={this.props.pageTitle} />
         </div>

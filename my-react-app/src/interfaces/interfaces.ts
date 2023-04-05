@@ -1,3 +1,5 @@
+import { FormEvent, RefObject } from 'react';
+
 export interface CardProps {
   id: number;
   image: string;
@@ -25,4 +27,55 @@ export interface TitleProps {
 
 export interface SetPageTitle {
   setCurrentPageTitle: (title: string) => void;
+}
+
+export interface FormState {
+  username?: string;
+  birthdayInput?: string;
+  citySelect?: string;
+  consentCheckbox?: boolean;
+  genderSwitch?: string;
+  profilePictureInput?: string | ArrayBuffer | null;
+  fileSelected?: boolean;
+  selectedFileName?: string;
+}
+
+export interface FormProps {
+  nameInput?: RefObject<HTMLInputElement>;
+  birthdayInput?: RefObject<HTMLInputElement>;
+  citySelect?: RefObject<HTMLSelectElement>;
+  consentCheckbox?: RefObject<HTMLInputElement>;
+  maleGenderSwitch?: RefObject<HTMLInputElement>;
+  femaleGenderSwitch?: RefObject<HTMLInputElement>;
+  profilePictureInput?: RefObject<HTMLInputElement>;
+  fileSelected?: boolean;
+  selectedFileName?: string;
+  showErrorMessages?: {
+    username?: boolean;
+    birthdayInput?: boolean;
+    consentCheckbox?: boolean;
+    citySelect?: boolean;
+    photoSelect?: boolean;
+    genderSwitch?: boolean;
+  };
+  onFormSubmit?: (event: FormEvent<HTMLFormElement>) => void;
+  handleFileChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface FormPageState extends FormState {
+  formStateArray: FormState[];
+  showErrorMessages: {
+    username?: boolean;
+    birthdayInput?: boolean;
+    consentCheckbox?: boolean;
+    citySelect?: boolean;
+    photoSelect?: boolean;
+    genderSwitch?: boolean;
+  };
+  showSuccessMessage: boolean;
+  profileImg?: string | ArrayBuffer | null;
+}
+
+export interface FormCardData {
+  data: FormState;
 }
