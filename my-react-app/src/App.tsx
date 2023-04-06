@@ -3,9 +3,9 @@ import './style.css';
 import { BrowserRouter } from 'react-router-dom';
 import Routing from './components/Routing';
 import Header from './components/Header';
-import { TitleProps, TitleState } from 'interfaces/interfaces';
+import { TitleProps } from 'interfaces/interfaces';
 
-class App extends React.Component<TitleProps, TitleState> {
+class App extends React.Component<TitleProps> {
   constructor(props: TitleProps) {
     super(props);
     this.state = {
@@ -21,8 +21,8 @@ class App extends React.Component<TitleProps, TitleState> {
   render() {
     return (
       <BrowserRouter>
-        <Header pageTitle={this.state.currentPageTitle} />
-        <Routing setCurrentPageTitle={this.setCurrentPageTitle} />
+        <Header />
+        <Routing />
       </BrowserRouter>
     );
   }
