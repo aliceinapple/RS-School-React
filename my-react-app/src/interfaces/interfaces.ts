@@ -4,14 +4,13 @@ export interface CardProps {
   id: number;
   image: string;
   name: string;
+  status?: string;
+  species?: string;
 }
 
-export interface CardApi {
-  id: number;
-  name: string;
-  image: string;
-  status: string;
-  species: string;
+export interface PopUpProps {
+  popUp: CardProps | null;
+  hahdleClick: () => void;
 }
 
 export interface SearchBarProps {

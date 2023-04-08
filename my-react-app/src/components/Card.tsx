@@ -1,9 +1,10 @@
-import { CardApi, CardProps } from 'interfaces/interfaces';
+import { CardProps } from 'interfaces/interfaces';
 import React, { Fragment, useState } from 'react';
+import PopUp from './PopUp';
 
 function Card(props: CardProps) {
   const { id, image, name } = props;
-  const [cardApi, setCardApi] = useState<CardApi | null>(null);
+  const [popUp, setPopUp] = useState<CardProps | null>(null);
   const [error, setError] = useState<Error>();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isRender, setIsRender] = useState(false);
@@ -16,8 +17,7 @@ function Card(props: CardProps) {
       .then(
         (result) => {
           setIsLoaded(true);
-          setCardApi(result);
-          console.log(result);
+          setPopUp(result);
         },
         (error) => {
           setIsLoaded(true);
@@ -36,13 +36,7 @@ function Card(props: CardProps) {
         <p>{name}</p>
         <img src={image}></img>
       </div>
-
-      {isRender && (
-        <div onClick={handleClick}>
-          <p>{cardApi?.status}</p>
-          <p>{cardApi?.species}</p>
-        </div>
-      )}
+      {isRender && <PopUp hahdleClick={handleClick} popUp={popUp} />}
     </Fragment>
   );
 }

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Jost&display=swap');
 
 :root {
-  --blue-color: #8CB0C9;
+  --blue-color: #35435F;
   --white-color: white;
   --almost-white-color: #F5F5F5;
   --light-black: #2C2D32;
@@ -10,7 +10,10 @@
 body {
   background: var(--almost-white-color);
   font-family: 'Jost', sans-serif;
-  color: #2C2D32;
+  color: var(--white-color);
+  background-image: url(https://images.unsplash.com/photo-1594683734152-0eccf2501041?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1893&q=80);
+  background-size: cover;
+  background-position-y: -100px;
 }
 
 p {
@@ -25,10 +28,11 @@ h2 {
 .header {
   display: grid;
   grid-template-columns: auto auto;
-  padding: 50px 40px;
+  padding: 30px 40px;
   gap: 20px;
-  background-image: url(https://embassy.by/assets/cache_image/content/slide/_1920x500_7ff.jpg);
-  background-size: cover;
+  background: #2c2d328b;
+  /* background-image: url(https://stoneforest.ru/wp-content/uploads/2022/03/new-rick-and-morty-2022-main.jpg);
+  background-size: cover; */
 }
 
 .nav {
@@ -45,7 +49,7 @@ h2 {
 }
 
 a {
-  color: var(--light-black);
+  color: var(--white-color);
   font-size: 25px;
   text-decoration: none;
 }
@@ -194,6 +198,10 @@ a:hover {
   border: 1px solid var(--light-black);
 }
 
+.form {
+  color: black;
+}
+
 .form label {
   display: grid;
   grid-template-columns: 100px auto;
@@ -315,4 +323,22 @@ input[type="checkbox"]:checked::before {
   height: 170px;
   margin-top: 20px;
   align-self: center;
+}
+
+.popup_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #2c2d328b;
+}
+
+.popup {
+  position: fixed;
+  top: calc(50% - 100px);
+  left: calc(50% - 100px);
+  background: white;
+  height: 200px;
+  width: 200px;
 }
