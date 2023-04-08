@@ -6,14 +6,17 @@ function CardsBlock(props: CardsProps) {
   if (props.error) {
     return <div>Ошибка: {props.error.message}</div>;
   } else if (!props.isLoaded) {
-    return <div>Загрузка...</div>;
+    return <div className="loader"></div>;
   } else {
     return (
       <div className="main-page_cards" role={'cards'}>
-        {props.dataApi &&
+        {props.dataApi?.results ? (
           props.dataApi.results.map((data) => (
             <Card key={data.id} id={data.id} image={data.image} name={data.name} />
-          ))}
+          ))
+        ) : (
+          <p style={{ fontSize: '40px' }}>Nothing found</p>
+        )}
       </div>
     );
   }

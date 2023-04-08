@@ -4,9 +4,7 @@ import PopUp from './PopUp';
 
 function Card(props: CardProps) {
   const { id, image, name } = props;
-  const [popUp, setPopUp] = useState<CardProps | null>(null);
-  const [error, setError] = useState<Error>();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [popUpData, setPopUpData] = useState<CardProps | null>(null);
   const [isRender, setIsRender] = useState(false);
 
   const getInfo = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -14,16 +12,9 @@ function Card(props: CardProps) {
     const parentNode = event.currentTarget as HTMLDivElement;
     fetch(`https://rickandmortyapi.com/api/character/${parentNode.id}`)
       .then((data) => data.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setPopUp(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+      .then((result) => {
+        setPopUpData(result);
+      });
   };
 
   const handleClick = () => {
@@ -32,11 +23,11 @@ function Card(props: CardProps) {
 
   return (
     <Fragment>
-      <div onClick={getInfo} id={`${id}`}>
+      <div className="card" onClick={getInfo} id={`${id}`}>
+        <img className="card_img" src={image}></img>
         <p>{name}</p>
-        <img src={image}></img>
       </div>
-      {isRender && <PopUp hahdleClick={handleClick} popUp={popUp} />}
+      {isRender && <PopUp hahdleClick={handleClick} popUpData={popUpData} />}
     </Fragment>
   );
 }

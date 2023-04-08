@@ -20,22 +20,26 @@ function MainPage() {
   };
 
   useEffect(() => {
-    getCharacters();
+    setTimeout(getCharacters, 2000);
   }, []);
 
   const searchValue = (value: string) => {
-    fetch(`https://rickandmortyapi.com/api/character?name=${value}`)
-      .then((data) => data.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setDataApi(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+    setIsLoaded(false);
+    setDataApi(null);
+    setTimeout(() => {
+      fetch(`https://rickandmortyapi.com/api/character?name=${value}`)
+        .then((data) => data.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setDataApi(result);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+    }, 2000);
   };
 
   return (

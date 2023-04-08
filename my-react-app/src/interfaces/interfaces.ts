@@ -6,10 +6,14 @@ export interface CardProps {
   name: string;
   status?: string;
   species?: string;
+  gender?: string;
+  origin?: {
+    name: string;
+  };
 }
 
 export interface PopUpProps {
-  popUp: CardProps | null;
+  popUpData: CardProps | null;
   hahdleClick: () => void;
 }
 

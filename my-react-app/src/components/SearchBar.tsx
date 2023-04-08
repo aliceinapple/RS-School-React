@@ -8,15 +8,18 @@ function SearchBar(props: SearchBarProps) {
     setSearchValue(event.target.value);
   };
 
-  const handleClick = () => {
+  const handleClick = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     props.searchValue(searchValue);
   };
 
   return (
-    <div className="main-page_search">
-      <input type="text" value={searchValue} onChange={handleChange} />
-      <button onClick={handleClick}></button>
-    </div>
+    <form onSubmit={handleClick}>
+      <div className="main-page_search">
+        <input type="text" value={searchValue} onChange={handleChange} />
+        <button type="submit"></button>
+      </div>
+    </form>
   );
 }
 
