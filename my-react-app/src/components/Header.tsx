@@ -20,7 +20,7 @@ function Header() {
           <Link to="/about">About</Link>
           <Link to="/form">Form</Link>
         </div>
-        <HeaderTitle pageTitle={pageTitle} />
+        <HeaderTitle pageTitle={pageTitle ? pageTitle : 'Main'} />
       </div>
     </header>
   );

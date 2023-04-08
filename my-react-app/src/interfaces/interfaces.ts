@@ -4,13 +4,18 @@ export interface CardProps {
   id: number;
   image: string;
   name: string;
-  weight: number;
-  portion: string;
-  price: number;
+}
+
+export interface CardApi {
+  id: number;
+  name: string;
+  image: string;
+  status: string;
+  species: string;
 }
 
 export interface SearchBarProps {
-  name: string;
+  searchValue: (value: string) => void;
 }
 
 export interface TitleProps {
@@ -33,4 +38,23 @@ export interface FormCardsProps {
 export interface FormProps {
   onFormSubmit: (data: FormInputs) => void;
   formRef: RefObject<HTMLFormElement>;
+}
+
+export interface IApi {
+  info: {
+    count: number;
+    next: string;
+    pages: number;
+  };
+  results: {
+    id: number;
+    name: string;
+    image: string;
+  }[];
+}
+
+export interface CardsProps {
+  dataApi: IApi | null;
+  error: Error | undefined;
+  isLoaded: boolean;
 }

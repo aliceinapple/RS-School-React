@@ -1,21 +1,21 @@
 import { SearchBarProps } from 'interfaces/interfaces';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 function SearchBar(props: SearchBarProps) {
-  const [searchValue, setSearchValue] = useState(localStorage.getItem(props.name) || '');
-
-  useEffect(() => {
-    localStorage.setItem(props.name, searchValue);
-  }, [props.name, searchValue]);
+  const [searchValue, setSearchValue] = useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
+  const handleClick = () => {
+    props.searchValue(searchValue);
+  };
+
   return (
     <div className="main-page_search">
-      <input type="text" name={props.name} value={searchValue} onChange={handleChange} />
-      <button></button>
+      <input type="text" value={searchValue} onChange={handleChange} />
+      <button onClick={handleClick}></button>
     </div>
   );
 }
