@@ -4,12 +4,12 @@ import Card from './Card';
 
 function CardsBlock(props: CardsProps) {
   if (props.error) {
-    return <div>Ошибка: {props.error.message}</div>;
+    return <div role="cards">Error: {props.error.message}</div>;
   } else if (!props.isLoaded) {
-    return <div className="loader"></div>;
+    return <div role="cards" className="loader"></div>;
   } else {
     return (
-      <div className="main-page_cards" role={'cards'}>
+      <div className="main-page_cards" role="cards">
         {props.dataApi?.results ? (
           props.dataApi.results.map((data) => (
             <Card key={data.id} id={data.id} image={data.image} name={data.name} />

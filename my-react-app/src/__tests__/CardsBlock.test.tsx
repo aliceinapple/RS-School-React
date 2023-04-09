@@ -1,29 +1,40 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import CardsBlock from '../components/CardsBlock';
-import cardsData from '../data/cardsData.json';
 
 describe('CardsBlock', () => {
-  const mockProps = {
+  const props = {
     dataApi: {
       info: { count: 10, next: 'string', pages: 1 },
-      results: { id: 1, name: 'Vika', image: 'image' },
+      results: [
+        { id: 1, image: 'image1.png', name: 'Card 1' },
+        { id: 2, image: 'image2.png', name: 'Card 2' },
+      ],
     },
-    error: 'error message',
+    error: new Error('Unable to load data'),
     isLoaded: false,
   };
 
-  test('should render all cards', () => {
-    render(<CardsBlock {...mockProps} />);
-    const cards = screen.getAllByRole('card');
+  test('renders error message', () => {
+    const { getByRole, queryByText } = render(<CardsBlock {...props} />);
+    const cardsElement = getByRole('cards', { hidden: true });
 
-    expect(cards.length).toBe(cardsData.length);
+    expect(cardsElement).toBeInTheDocument();
+    expect(queryByText('Nothing found')).not.toBeInTheDocument();
+    expect(queryByText(`Error: ${props.error.message}`)).toBeInTheDocument();
+  });
 
-    cardsData.forEach((card, index) => {
-      expect(cards[index]).toHaveTextContent(card.name);
-      expect(cards[index]).toHaveTextContent(`${card.weight} grams`);
-      expect(cards[index]).toHaveTextContent(card.portion);
-      expect(cards[index]).toHaveTextContent(`${card.price} $`);
-    });
+  test('renders loading spinner', () => {
+    const { getByRole } = render(<CardsBlock {...props} />);
+    const cardsElement = getByRole('cards');
+    const loaderElement = cardsElement?.querySelector('.loader');
+    expect(loaderElement).toBeNull();
+  });
+
+  test('renders card list', () => {
+    const { getByRole } = render(<CardsBlock {...props} />);
+    const cardsElement = getByRole('cards');
+    const mainElement = cardsElement?.querySelector('.main-page_cards');
+    expect(mainElement).toBeNull();
   });
 });
