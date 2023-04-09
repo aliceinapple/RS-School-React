@@ -23,7 +23,7 @@ function Card(props: CardProps) {
 
   return (
     <Fragment>
-      <div className="card" onClick={getInfo} id={`${id}`}>
+      <div role="card" className="card" onClick={getInfo} id={`${id}`}>
         <img className="card_img" src={image}></img>
         <p>{name}</p>
       </div>
