@@ -24,28 +24,6 @@ describe('Card component', () => {
     expect(cardName).toBeInTheDocument();
   });
 
-  // test('should render card with name and image', async () => {
-  //   const data = {
-  //     id: 1,
-  //     image: 'test-image',
-  //     name: 'test-name',
-  //   };
-  //   fetchMock.getOnce(`https://rickandmortyapi.com/api/character/${data.id}`, {
-  //     body: data,
-  //     headers: { 'content-type': 'application/json' },
-  //   });
-
-  //   render(<Card {...data} />);
-  //   const card = screen.getByRole('card');
-  //   expect(card).toBeInTheDocument();
-  //   expect(screen.getByText(data.name)).toBeInTheDocument();
-  //   expect(screen.getByRole('img')).toHaveAttribute('src', data.image);
-
-  //   await waitFor(() => {
-  //     expect(fetchMock.calls()).toHaveLength(1);
-  //   });
-  // });
-
   test('should hide pop-up when close button is clicked', async () => {
     const name = 'Rick Sanchez';
     const image = 'https://rickandmortyapi.com/api/character/avatar/1.jpeg';
