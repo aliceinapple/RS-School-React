@@ -5,7 +5,7 @@ const PopUp = (props: PopUpProps) => {
   return (
     <Fragment>
       <div className="popup_bg" onClick={props.hahdleClick}></div>
-      <div className="popup">
+      <div className="popup" role="popup">
         <p style={{ fontSize: '25px' }}>{props.popUpData?.name}</p>
         <img className="popup_img" src={props.popUpData?.image}></img>
         <p>Gender: {props.popUpData?.gender}</p>

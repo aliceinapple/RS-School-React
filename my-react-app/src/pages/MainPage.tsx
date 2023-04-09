@@ -43,7 +43,7 @@ function MainPage() {
   };
 
   return (
-    <div className="main-page">
+    <div className="main-page" role="main-page">
       <SearchBar searchValue={searchValue} />
       <CardsBlock dataApi={dataApi} error={error} isLoaded={isLoaded} />
     </div>

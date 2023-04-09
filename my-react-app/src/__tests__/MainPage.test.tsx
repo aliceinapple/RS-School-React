@@ -1,19 +1,13 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import MainPage from '../pages/MainPage';
-import { BrowserRouter } from 'react-router-dom';
 
 describe('MainPage', () => {
-  // test('should render Header, SearchBar, and CardsBlock', () => {
-  //   render(
-  //     <BrowserRouter>
-  //       <MainPage />
-  //     </BrowserRouter>
-  //   );
-  //   const searchBar = screen.getByRole('textbox');
-  //   const cardsBlock = screen.getByRole('cards');
+  test('should render MainPage with SearchBar and CardsBlock', async () => {
+    const { getByRole } = render(<MainPage />);
 
-  //   expect(searchBar).toBeInTheDocument();
-  //   expect(cardsBlock).toBeInTheDocument();
-  // });
+    expect(getByRole('main-page')).toBeInTheDocument();
+    expect(getByRole('search-bar')).toBeInTheDocument();
+    expect(getByRole('cards')).toBeInTheDocument();
+  });
 });

@@ -3,7 +3,6 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import SearchBar from '../components/SearchBar';
 
 describe('SearchBar component', () => {
-  const name = 'test-search';
   const searchValue = 'test-value';
 
   afterEach(() => {
@@ -34,7 +33,7 @@ describe('SearchBar component', () => {
     render(<SearchBar searchValue={searchValueSpy} />);
     const input = screen.getByRole('textbox') as HTMLInputElement;
     fireEvent.change(input, { target: { value: searchValue3 } });
-    fireEvent.submit(screen.getByRole('form'));
+    fireEvent.submit(screen.getByRole('search-bar'));
     expect(localStorage.getItem('searchValue')).toBe(searchValue3);
   });
 

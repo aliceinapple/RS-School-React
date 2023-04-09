@@ -22,7 +22,7 @@ function SearchBar(props: SearchBarProps) {
   };
 
   return (
-    <form onSubmit={handleClick} role="form">
+    <form onSubmit={handleClick} role="search-bar">
       <div className="main-page_search">
         <input type="text" value={searchValue} onChange={handleChange} />
         <button type="submit"></button>
