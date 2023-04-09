@@ -11,34 +11,36 @@ describe('SearchBar component', () => {
   });
 
   test('should render an input with correct value', () => {
-    localStorage.setItem(name, searchValue);
-    render(<SearchBar name={name} />);
+    localStorage.setItem('searchValue', searchValue);
+    render(<SearchBar searchValue={() => {}} />);
     const input = screen.getByRole('textbox') as HTMLInputElement;
     expect(input).toBeInTheDocument();
     expect(input.value).toBe(searchValue);
   });
 
   test('should update input value on change', () => {
-    render(<SearchBar name={name} />);
+    const searchValue2 = 'new-value';
+    render(<SearchBar searchValue={() => {}} />);
     const input = screen.getByRole('textbox') as HTMLInputElement;
-    fireEvent.change(input, { target: { value: searchValue } });
-    expect(input.value).toBe(searchValue);
+    fireEvent.change(input, { target: { value: searchValue2 } });
+    expect(input.value).toBe(searchValue2);
   });
 
-  test('should save input value to localStorage on unmount', () => {
-    render(<SearchBar name={name} />);
-    const input = screen.getByRole('textbox');
-    fireEvent.change(input, { target: { value: searchValue } });
-    fireEvent.blur(input);
-    expect(localStorage.getItem(name)).toBe(searchValue);
+  test('should save input value to localStorage on submit', () => {
+    const searchValue3 = 'submit-value';
+    const searchValueSpy = (value: string) => {
+      expect(value).toBe(searchValue3);
+    };
+    render(<SearchBar searchValue={searchValueSpy} />);
+    const input = screen.getByRole('textbox') as HTMLInputElement;
+    fireEvent.change(input, { target: { value: searchValue3 } });
+    fireEvent.submit(screen.getByRole('form'));
+    expect(localStorage.getItem('searchValue')).toBe(searchValue3);
   });
 
   test('should load search value from localStorage on initial render', () => {
-    const name = 'test-name';
-    const searchValue = 'test-value';
-    localStorage.setItem(name, searchValue);
-    render(<SearchBar name={name} />);
-
+    localStorage.setItem('searchValue', searchValue);
+    render(<SearchBar searchValue={() => {}} />);
     const input = screen.getByRole('textbox') as HTMLInputElement;
     expect(input.value).toBe(searchValue);
   });
