@@ -10,7 +10,9 @@ function MainPage() {
 
   const getCharacters = async () => {
     const response = await fetch(
-      `https://rickandmortyapi.com/api/character?name=${localStorage.getItem('searchValue')}`
+      `https://rickandmortyapi.com/api/character?name=${
+        localStorage.getItem('searchValue') ? localStorage.getItem('searchValue') : ''
+      }`
     );
     const data = await response.json();
     setIsLoaded(true);
