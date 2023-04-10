@@ -9,7 +9,9 @@ function MainPage() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const getCharacters = async () => {
-    const response = await fetch(`https://rickandmortyapi.com/api/character`);
+    const response = await fetch(
+      `https://rickandmortyapi.com/api/character?name=${localStorage.getItem('searchValue')}`
+    );
     const data = await response.json();
     setIsLoaded(true);
     setDataApi((prevState) => ({
