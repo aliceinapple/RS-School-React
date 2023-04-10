@@ -1,16 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap');
 
 :root {
-  --blue-color: #8CB0C9;
+  --blue-color: #35435F;
   --white-color: white;
   --almost-white-color: #F5F5F5;
   --light-black: #2C2D32;
+  --transparent-black: #000000c7;
 }
 
 body {
   background: var(--almost-white-color);
-  font-family: 'Jost', sans-serif;
-  color: #2C2D32;
+  font-family: 'Freckle Face', cursive;
+  color: var(--white-color);
+  background-image: url(https://images.unsplash.com/photo-1592093474530-86874167e896?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1901&q=80);
+  background-size: cover;
 }
 
 p {
@@ -25,10 +28,9 @@ h2 {
 .header {
   display: grid;
   grid-template-columns: auto auto;
-  padding: 50px 40px;
+  padding: 30px 40px;
   gap: 20px;
-  background-image: url(https://embassy.by/assets/cache_image/content/slide/_1920x500_7ff.jpg);
-  background-size: cover;
+  background: var(--transparent-black);
 }
 
 .nav {
@@ -38,15 +40,14 @@ h2 {
 }
 
 .header_title {
-  font-family: 'Dancing Script', cursive;
   font-size: 40px;
   justify-self: end;
   text-shadow: 1px 1px 5px var(--almost-white-color);
 }
 
 a {
-  color: var(--light-black);
-  font-size: 25px;
+  color: var(--white-color);
+  font-size: 28px;
   text-decoration: none;
 }
 
@@ -77,15 +78,17 @@ a:hover {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   width: 300px;
+  opacity: 0.9;
+  background: var(--white-color);
 }
 
 .main-page_search input:focus {
   outline: none;
-  background: var(--white-color);
+  opacity: 1;
 }
 
 .main-page_search input:focus+button {
-  background-color: var(--white-color);
+  opacity: 1;
 }
 
 .main-page_search button {
@@ -93,11 +96,13 @@ a:hover {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   background-image: url("./assets/icons/ico_search.png");
+  background-color: var(--white-color);
   background-size: 80%;
   background-repeat: no-repeat;
   background-position: center;
   width: 40px;
   cursor: pointer;
+  opacity: 0.9;
 }
 
 .main-page_search button:hover {
@@ -117,17 +122,20 @@ a:hover {
 }
 
 .card {
-  border: 1px solid var(--blue-color);
+  border: 1px solid var(--white-color);
   padding: 20px;
   border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  width: 200px;
+  height: 260px;
 }
 
 .card_img {
-  border-radius: 50%;
-  width: 250px;
-  height: 250px;
-  background-size: cover;
-  background-position: center bottom;
+  border-radius: 5px;
+  width: 200px;
+  height: 200px;
 }
 
 .add-to-cart_btn,
@@ -192,6 +200,10 @@ a:hover {
 .city-select select:focus {
   outline: none;
   border: 1px solid var(--light-black);
+}
+
+.form {
+  color: black;
 }
 
 .form label {
@@ -315,4 +327,88 @@ input[type="checkbox"]:checked::before {
   height: 170px;
   margin-top: 20px;
   align-self: center;
+}
+
+.popup_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--transparent-black);
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  position: fixed;
+  top: calc(50% - 235px);
+  left: calc(50% - 160px);
+  background: var(--white-color);
+  color: black;
+  height: 450px;
+  width: 300px;
+  padding: 20px;
+  font-size: 18px;
+}
+
+.popup_img {
+  border-radius: 5px;
+  width: 250px;
+  height: 250px;
+  margin: 10px;
+}
+
+.popup_btn {
+  position: fixed;
+  top: calc(50% - 228px);
+  left: calc(50% + 150px);
+  cursor: pointer;
+  background: transparent;
+  border-radius: 5px;
+}
+
+.popup_btn:hover {
+  background: black;
+  color: var(--white-color);
+}
+
+.popup_btn:active {
+  background: none;
+  color: black;
+}
+
+.loader {
+  position: fixed;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+  --b: 10px;
+  --n: 10;
+  --g: 10deg;
+  --c: var(--white-color);
+
+  width: 100px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 1px;
+  background: conic-gradient(#0000, var(--c)) content-box;
+  --_m:
+    repeating-conic-gradient(#0000 0deg,
+      #000 1deg calc(360deg/var(--n) - var(--g) - 1deg),
+      #0000 calc(360deg/var(--n) - var(--g)) calc(360deg/var(--n))),
+    radial-gradient(farthest-side, #0000 calc(98% - var(--b)), #000 calc(100% - var(--b)));
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+  animation: load 1s infinite steps(var(--n));
+}
+
+@keyframes load {
+  to {
+    transform: rotate(1turn)
+  }
 }
