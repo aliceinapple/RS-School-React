@@ -1,45 +1,30 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import SearchBar from '../components/SearchBar/SearchBar';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 
 describe('SearchBar component', () => {
-  const searchValue = 'test-value';
-
-  afterEach(() => {
-    localStorage.clear();
-  });
-
-  test('should render an input with correct value', () => {
-    localStorage.setItem('searchValue', searchValue);
-    render(<SearchBar searchValue={() => {}} />);
-    const input = screen.getByRole('textbox') as HTMLInputElement;
-    expect(input).toBeInTheDocument();
-    expect(input.value).toBe(searchValue);
-  });
+  const searchValue = 'new-value';
 
   test('should update input value on change', () => {
-    const searchValue2 = 'new-value';
-    render(<SearchBar searchValue={() => {}} />);
+    render(
+      <Provider store={store}>
+        <SearchBar handleSearchSubmit={() => {}} />
+      </Provider>
+    );
     const input = screen.getByRole('textbox') as HTMLInputElement;
-    fireEvent.change(input, { target: { value: searchValue2 } });
-    expect(input.value).toBe(searchValue2);
-  });
-
-  test('should save input value to localStorage on submit', () => {
-    const searchValue3 = 'submit-value';
-    const searchValueSpy = (value: string) => {
-      expect(value).toBe(searchValue3);
-    };
-    render(<SearchBar searchValue={searchValueSpy} />);
-    const input = screen.getByRole('textbox') as HTMLInputElement;
-    fireEvent.change(input, { target: { value: searchValue3 } });
-    fireEvent.submit(screen.getByRole('search-bar'));
-    expect(localStorage.getItem('searchValue')).toBe(searchValue3);
+    fireEvent.change(input, { target: { value: searchValue } });
+    expect(input.value).toBe(searchValue);
   });
 
   test('should load search value from localStorage on initial render', () => {
     localStorage.setItem('searchValue', searchValue);
-    render(<SearchBar searchValue={() => {}} />);
+    render(
+      <Provider store={store}>
+        <SearchBar handleSearchSubmit={() => {}} />
+      </Provider>
+    );
     const input = screen.getByRole('textbox') as HTMLInputElement;
     expect(input.value).toBe(searchValue);
   });

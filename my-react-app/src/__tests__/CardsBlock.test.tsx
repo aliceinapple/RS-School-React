@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import CardsBlock from '../components/Card/CardsBlock';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 
 describe('CardsBlock', () => {
   const props = {
@@ -16,7 +18,11 @@ describe('CardsBlock', () => {
   };
 
   test('renders error message', () => {
-    const { getByRole, queryByText } = render(<CardsBlock {...props} />);
+    const { getByRole, queryByText } = render(
+      <Provider store={store}>
+        <CardsBlock {...props} />
+      </Provider>
+    );
     const cardsElement = getByRole('cards', { hidden: true });
 
     expect(cardsElement).toBeInTheDocument();
@@ -25,14 +31,22 @@ describe('CardsBlock', () => {
   });
 
   test('renders loading spinner', () => {
-    const { getByRole } = render(<CardsBlock {...props} />);
+    const { getByRole } = render(
+      <Provider store={store}>
+        <CardsBlock {...props} />
+      </Provider>
+    );
     const cardsElement = getByRole('cards');
     const loaderElement = cardsElement?.querySelector('.loader');
     expect(loaderElement).toBeNull();
   });
 
   test('renders card list', () => {
-    const { getByRole } = render(<CardsBlock {...props} />);
+    const { getByRole } = render(
+      <Provider store={store}>
+        <CardsBlock {...props} />
+      </Provider>
+    );
     const cardsElement = getByRole('cards');
     const mainElement = cardsElement?.querySelector('.main-page_cards');
     expect(mainElement).toBeNull();
