@@ -90,6 +90,7 @@ function Form({ onFormSubmit, formRef }: FormProps) {
           <input
             id="profile-picture-input"
             type="file"
+            accept=".jpg, .jpeg, .png, .svg"
             {...register('profilePicture', { required: true })}
           />
         </label>

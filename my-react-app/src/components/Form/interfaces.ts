@@ -1,7 +1,7 @@
 import { RefObject } from 'react';
 
 export interface FormInputs {
-  profilePicture: FileList;
+  profilePicture: FileList | string;
   name: string;
   birthday: string;
   city: string;
@@ -16,4 +16,8 @@ export interface FormCardsProps {
 export interface FormProps {
   onFormSubmit: (data: FormInputs) => void;
   formRef: RefObject<HTMLFormElement>;
+}
+
+export interface FormState {
+  formStateArray: FormInputs[];
 }
