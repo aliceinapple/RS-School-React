@@ -2,6 +2,9 @@ import { PayloadAction, configureStore, createSlice } from '@reduxjs/toolkit';
 import { FormInputs, FormState } from 'components/Form/interfaces';
 import { SearchState } from 'components/SearchBar/interfaces';
 import { DataState, IApi } from 'interfaces/interfaces';
+import { fetchCharacters } from './requests';
+
+export type RootState = ReturnType<typeof store.getState>;
 
 const initialState: SearchState = {
   searchText: '',
@@ -32,6 +35,17 @@ export const dataSlice = createSlice({
     setDataApi: (state: DataState, action: PayloadAction<IApi | null>) => {
       state.dataApi = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchCharacters.pending, (state) => {
+      state.dataApi = null;
+    });
+    builder.addCase(fetchCharacters.fulfilled, (state, action) => {
+      state.dataApi = action.payload;
+    });
+    builder.addCase(fetchCharacters.rejected, (state) => {
+      state.dataApi = null;
+    });
   },
 });
 

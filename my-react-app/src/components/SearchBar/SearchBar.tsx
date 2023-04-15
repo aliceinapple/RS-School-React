@@ -1,13 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearchText, store } from '../../store';
+import { RootState, setSearchText } from '../../store';
 import { SearchBarProps } from './interfaces';
 
 function SearchBar(props: SearchBarProps) {
   const dispatch = useDispatch();
-  const searchText = useSelector(
-    (state: ReturnType<typeof store.getState>) => state.search.searchText
-  );
+  const searchText = useSelector((state: RootState) => state.search.searchText);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchText(event.target.value));

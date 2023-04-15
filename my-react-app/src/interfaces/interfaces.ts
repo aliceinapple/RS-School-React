@@ -14,3 +14,10 @@ export interface IApi {
 export interface DataState {
   dataApi: IApi | null;
 }
+
+export interface Action {
+  type: string;
+  payload: {
+    searchText: string;
+  };
+}

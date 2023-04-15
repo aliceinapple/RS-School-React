@@ -2,32 +2,28 @@ import SearchBar from '../components/SearchBar/SearchBar';
 import React, { useCallback, useEffect, useState } from 'react';
 import CardsBlock from '../components/Card/CardsBlock';
 import { useDispatch, useSelector } from 'react-redux';
-import { setDataApi, store } from '../store';
+import { RootState } from '../store';
+import { ThunkDispatch } from '@reduxjs/toolkit';
+import { Action } from 'interfaces/interfaces';
+import { fetchCharacters } from '../requests';
 
 function MainPage() {
   const [error, setError] = useState<Error>();
   const [isLoaded, setIsLoaded] = useState(false);
-  const dispatch = useDispatch();
-  const searchText = useSelector(
-    (state: ReturnType<typeof store.getState>) => state.search.searchText
-  );
-  const dataApi = useSelector((state: ReturnType<typeof store.getState>) => state.data.dataApi);
+  const dispatch: ThunkDispatch<RootState, undefined, Action> = useDispatch();
+  const searchText = useSelector((state: RootState) => state.search.searchText);
+  const dataApi = useSelector((state: RootState) => state.data.dataApi);
 
-  const getCharacters = useCallback(async () => {
+  const getCharacters = useCallback(() => {
     setIsLoaded(false);
     setError(undefined);
 
-    try {
-      const response = await fetch(
-        `https://rickandmortyapi.com/api/character?name=${searchText ? searchText : ''}`
-      );
-      const data = await response.json();
-      dispatch(setDataApi(data));
-      setIsLoaded(true);
-    } catch (error) {
-      setIsLoaded(true);
-      // setError(error);
-    }
+    dispatch(fetchCharacters(searchText))
+      .then(() => setIsLoaded(true))
+      .catch((error: Error) => {
+        setIsLoaded(true);
+        setError(error);
+      });
   }, [dispatch, searchText]);
 
   useEffect(() => {
@@ -46,7 +42,7 @@ function MainPage() {
   return (
     <div className="main-page" role="main-page">
       <SearchBar handleSearchSubmit={handleSearchSubmit} />
-      <CardsBlock dataApi={dataApi} error={error} isLoaded={isLoaded} />
+      <CardsBlock error={error} isLoaded={isLoaded} />
     </div>
   );
 }
