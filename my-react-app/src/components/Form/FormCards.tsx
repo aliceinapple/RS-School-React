@@ -1,5 +1,5 @@
-import { FormCardsProps } from 'interfaces/interfaces';
 import React, { useEffect, useState } from 'react';
+import { FormCardsProps } from './interfaces';
 
 function FormCards({ data }: FormCardsProps) {
   const { name, birthday, city, gender, profilePicture } = data;

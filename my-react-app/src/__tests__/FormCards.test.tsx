@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import FormCards from '../components/FormCards';
+import FormCards from '../components/Form/FormCards';
 
 describe('FormCards component', () => {
   interface FormInputs {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import CardsBlock from '../components/CardsBlock';
+import CardsBlock from '../components/Card/CardsBlock';
 
 describe('CardsBlock', () => {
   const props = {

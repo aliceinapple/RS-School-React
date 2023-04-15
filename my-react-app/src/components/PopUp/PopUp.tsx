@@ -1,5 +1,5 @@
-import { PopUpProps } from 'interfaces/interfaces';
 import React, { Fragment } from 'react';
+import { PopUpProps } from './interfaces';
 
 const PopUp = (props: PopUpProps) => {
   return (

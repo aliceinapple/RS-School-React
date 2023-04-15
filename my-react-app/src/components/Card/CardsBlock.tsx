@@ -1,6 +1,6 @@
 import React from 'react';
-import { CardsProps } from 'interfaces/interfaces';
 import Card from './Card';
+import { CardsProps } from './interfaces';
 
 function CardsBlock(props: CardsProps) {
   if (props.error) {

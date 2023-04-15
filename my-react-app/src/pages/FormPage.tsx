@@ -1,7 +1,7 @@
-import Form from '../components/Form';
+import Form from '../components/Form/Form';
 import React, { Fragment, useRef, useState } from 'react';
 import { FormInputs } from 'interfaces/interfaces';
-import FormCards from '../components/FormCards';
+import FormCards from '../components/Form/FormCards';
 import SuccessMessage from '../components/SuccessMessage';
 
 function FormPage() {

@@ -2,8 +2,10 @@ import React from 'react';
 import './style.css';
 import { BrowserRouter } from 'react-router-dom';
 import Routing from './components/Routing';
-import Header from './components/Header';
-import { TitleProps } from 'interfaces/interfaces';
+import Header from './components/Header/Header';
+import { Provider } from 'react-redux';
+import { TitleProps } from 'components/Header/interfaces';
+import { store } from './store';
 
 class App extends React.Component<TitleProps> {
   constructor(props: TitleProps) {
@@ -20,10 +22,12 @@ class App extends React.Component<TitleProps> {
 
   render() {
     return (
-      <BrowserRouter>
-        <Header />
-        <Routing />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Header />
+          <Routing />
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

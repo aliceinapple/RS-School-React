@@ -1,6 +1,6 @@
-import { CardProps } from 'interfaces/interfaces';
 import React, { Fragment, useState } from 'react';
-import PopUp from './PopUp';
+import PopUp from '../PopUp/PopUp';
+import { CardProps } from './interfaces';
 
 function Card(props: CardProps) {
   const { id, image, name } = props;

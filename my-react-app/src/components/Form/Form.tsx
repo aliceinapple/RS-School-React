@@ -1,6 +1,6 @@
-import { FormInputs, FormProps } from 'interfaces/interfaces';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { FormInputs, FormProps } from './interfaces';
 
 function Form({ onFormSubmit, formRef }: FormProps) {
   const {
