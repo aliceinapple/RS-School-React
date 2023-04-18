@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { FormProps } from 'interfaces/interfaces';
-import Form from '../components/Form';
+
+import Form from '../components/Form/Form';
+import { FormProps } from 'components/Form/interfaces';
 
 describe('Form', () => {
   const onSubmitMock = () => {};

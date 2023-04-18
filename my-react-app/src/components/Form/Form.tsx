@@ -1,6 +1,6 @@
-import { FormInputs, FormProps } from 'interfaces/interfaces';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { FormInputs, FormProps } from './interfaces';
 
 function Form({ onFormSubmit, formRef }: FormProps) {
   const {
@@ -90,6 +90,7 @@ function Form({ onFormSubmit, formRef }: FormProps) {
           <input
             id="profile-picture-input"
             type="file"
+            accept=".jpg, .jpeg, .png, .svg"
             {...register('profilePicture', { required: true })}
           />
         </label>

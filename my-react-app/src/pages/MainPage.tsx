@@ -1,55 +1,48 @@
-import SearchBar from '../components/SearchBar';
-import React, { useEffect, useState } from 'react';
-import CardsBlock from '../components/CardsBlock';
-import { IApi } from 'interfaces/interfaces';
+import SearchBar from '../components/SearchBar/SearchBar';
+import React, { useCallback, useEffect, useState } from 'react';
+import CardsBlock from '../components/Card/CardsBlock';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { ThunkDispatch } from '@reduxjs/toolkit';
+import { Action } from 'interfaces/interfaces';
+import { fetchCharacters } from '../requests';
 
 function MainPage() {
-  const [dataApi, setDataApi] = useState<IApi | null>(null);
   const [error, setError] = useState<Error>();
   const [isLoaded, setIsLoaded] = useState(false);
+  const dispatch: ThunkDispatch<RootState, undefined, Action> = useDispatch();
+  const searchText = useSelector((state: RootState) => state.search.searchText);
+  const dataApi = useSelector((state: RootState) => state.data.dataApi);
 
-  const getCharacters = async () => {
-    const response = await fetch(
-      `https://rickandmortyapi.com/api/character?name=${
-        localStorage.getItem('searchValue') ? localStorage.getItem('searchValue') : ''
-      }`
-    );
-    const data = await response.json();
-    setIsLoaded(true);
-    setDataApi((prevState) => ({
-      ...prevState,
-      results: data.results,
-      info: data.info,
-    }));
-  };
+  const getCharacters = useCallback(() => {
+    setIsLoaded(false);
+    setError(undefined);
+
+    dispatch(fetchCharacters(searchText))
+      .then(() => setIsLoaded(true))
+      .catch((error: Error) => {
+        setIsLoaded(true);
+        setError(error);
+      });
+  }, [dispatch, searchText]);
 
   useEffect(() => {
-    setTimeout(getCharacters, 2000);
-  }, []);
+    if (!dataApi) {
+      getCharacters();
+    } else {
+      setIsLoaded(true);
+    }
+  }, [dataApi, getCharacters]);
 
-  const searchValue = (value: string) => {
-    setIsLoaded(false);
-    setDataApi(null);
-    setTimeout(() => {
-      fetch(`https://rickandmortyapi.com/api/character?name=${value}`)
-        .then((data) => data.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setDataApi(result);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        );
-    }, 2000);
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    getCharacters();
   };
 
   return (
     <div className="main-page" role="main-page">
-      <SearchBar searchValue={searchValue} />
-      <CardsBlock dataApi={dataApi} error={error} isLoaded={isLoaded} />
+      <SearchBar handleSearchSubmit={handleSearchSubmit} />
+      <CardsBlock error={error} isLoaded={isLoaded} />
     </div>
   );
 }

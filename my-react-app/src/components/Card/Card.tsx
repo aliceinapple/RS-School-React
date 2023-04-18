@@ -1,20 +1,25 @@
-import { CardProps } from 'interfaces/interfaces';
 import React, { Fragment, useState } from 'react';
-import PopUp from './PopUp';
+import PopUp from '../PopUp/PopUp';
+import { CardProps } from './interfaces';
+import { useDispatch } from 'react-redux';
+import { fetchCharacterData } from '../../requests';
+import { ThunkDispatch } from '@reduxjs/toolkit';
+import { RootState } from 'store';
+import { Action } from 'interfaces/interfaces';
 
 function Card(props: CardProps) {
   const { id, image, name } = props;
   const [popUpData, setPopUpData] = useState<CardProps | null>(null);
   const [isRender, setIsRender] = useState(false);
 
+  const dispatch: ThunkDispatch<RootState, undefined, Action> = useDispatch();
+
   const getInfo = (event: React.MouseEvent<HTMLDivElement>) => {
     setIsRender(true);
     const parentNode = event.currentTarget as HTMLDivElement;
-    fetch(`https://rickandmortyapi.com/api/character/${parentNode.id}`)
-      .then((data) => data.json())
-      .then((result) => {
-        setPopUpData(result);
-      });
+    dispatch(fetchCharacterData(Number(parentNode.id))).then((result) => {
+      setPopUpData(result.payload);
+    });
   };
 
   const handleClick = () => {

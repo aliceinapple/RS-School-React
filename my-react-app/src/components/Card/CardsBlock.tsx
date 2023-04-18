@@ -1,8 +1,12 @@
 import React from 'react';
-import { CardsProps } from 'interfaces/interfaces';
 import Card from './Card';
+import { CardsProps } from './interfaces';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
 
 function CardsBlock(props: CardsProps) {
+  const dataApi = useSelector((state: RootState) => state.data.dataApi);
+
   if (props.error) {
     return <div role="cards">Error: {props.error.message}</div>;
   } else if (!props.isLoaded) {
@@ -10,8 +14,8 @@ function CardsBlock(props: CardsProps) {
   } else {
     return (
       <div className="main-page_cards" role="cards">
-        {props.dataApi?.results ? (
-          props.dataApi.results.map((data) => (
+        {dataApi?.results ? (
+          dataApi.results.map((data) => (
             <Card key={data.id} id={data.id} image={data.image} name={data.name} />
           ))
         ) : (

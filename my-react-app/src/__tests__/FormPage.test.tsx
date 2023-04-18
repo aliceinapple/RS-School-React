@@ -1,10 +1,16 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import FormPage from '../pages/FormPage';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 
 describe('FormPage', () => {
   test('validates profile picture input correctly', () => {
-    const { getByLabelText } = render(<FormPage />);
+    const { getByLabelText } = render(
+      <Provider store={store}>
+        <FormPage />
+      </Provider>
+    );
     const profilePictureInput = getByLabelText(/profile picture/i) as HTMLInputElement;
     const file = new File(['test file'], 'test.png', { type: 'image/png' });
     fireEvent.change(profilePictureInput, { target: { files: [file] } });
@@ -12,7 +18,11 @@ describe('FormPage', () => {
   });
 
   test('submitting the form adds a new FormCards component', () => {
-    render(<FormPage />);
+    render(
+      <Provider store={store}>
+        <FormPage />
+      </Provider>
+    );
     const nameInput = screen.getByLabelText('Name:');
     const birthdayInput = screen.getByLabelText('Birthday:');
     const city = screen.getByLabelText('City:');

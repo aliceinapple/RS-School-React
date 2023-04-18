@@ -1,7 +1,9 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import Card from '../components/Card';
+import Card from '../components/Card/Card';
 import fetchMock from 'fetch-mock';
+import { Provider } from 'react-redux';
+import { store } from '../store';
 
 describe('Card component', () => {
   beforeEach(() => {
@@ -13,7 +15,11 @@ describe('Card component', () => {
     const image = 'https://rickandmortyapi.com/api/character/avatar/1.jpeg';
     const id = 1;
 
-    render(<Card id={id} name={name} image={image} />);
+    render(
+      <Provider store={store}>
+        <Card id={id} name={name} image={image} />
+      </Provider>
+    );
 
     const card = screen.getByRole('card');
     const cardImage = screen.getByRole('img');
@@ -35,7 +41,11 @@ describe('Card component', () => {
     };
     fetchMock.mock(`https://rickandmortyapi.com/api/character/${id}`, mockResult);
 
-    render(<Card id={id} name={name} image={image} />);
+    render(
+      <Provider store={store}>
+        <Card id={id} name={name} image={image} />
+      </Provider>
+    );
 
     const card = screen.getByRole('card');
     fireEvent.click(card);
